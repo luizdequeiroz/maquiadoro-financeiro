@@ -1,0 +1,60 @@
+﻿@model List<Financeiro.Models.Entidades.Usuario>
+@{
+    ViewBag.Title = "Lista de usuários";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<fieldset>
+    <legend>Lista de Usuários</legend>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td colspan="5" align="right">
+                        <a href="~/Administrativo/NovoUsuario" target="principal" class="btn btn-primary btn-sm">NOVO USUÁRIO</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped">
+            <thead class="table-bordered">
+                <tr>
+                    <td><strong>ID</strong></td>
+                    <td><strong>NOME</strong></td>
+                    <td><strong>APELIDO</strong></td>
+                    <td><strong>DATA DE CADASTRO</strong></td>
+                    <td align="right"><strong>AÇÕES</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var u in Model)
+            {
+                    <tr>
+                        <th scope="row">@u.Id</th>
+                        <td>@u.Nome</td>
+                        <td>@u.Apelido</td>
+                        <td>@u.DataCadastro</td>
+                        <td align="right">
+                            <div class="btn-group">
+                                <a href="~/Administrativo/AlterarUsuario/@u.Id" target="principal" class="btn btn-default btn-xs">Alterar</a>
+                                @if (u.Id != (int)Session["id"])
+                                {
+                                    <a href="~/Administrativo/ExcluirUsuario/@u.Id" target="principal" class="btn btn-danger btn-xs">Excluir</a>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td colspan="5" align="right">
+                        <a href="~/Administrativo/NovoUsuario" target="principal" class="btn btn-primary btn-sm">NOVO USUÁRIO</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</fieldset>

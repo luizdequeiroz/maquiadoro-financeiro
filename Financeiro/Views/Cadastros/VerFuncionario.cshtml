@@ -1,0 +1,67 @@
+﻿@model Financeiro.Models.Entidades.Destinatario
+@{
+    ViewBag.Title = "Ficha de Funcionário";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<fieldset>
+    <legend>Ficha do Funcionário - @Model.Apelido</legend>
+    <div class="col-md-8">
+        <table class="table">
+            <tr>
+                <td align="right"><strong>Apelido: </strong></td>
+                <td align="left">
+                    @Html.ValueFor(f => f.Apelido)
+                </td>
+                <td align="right"><strong>Nome: </strong></td>
+                <td align="left">
+                    @Html.ValueFor(f => f.Nome)
+                </td>
+                <td align="right"><strong>CPF: </strong></td>
+                <td align="left">
+                    @Html.ValueFor(f => f.CPF)
+                </td>
+            </tr>
+            <tr>
+                <td align="right"><strong>Descrição: </strong></td>
+                <td align="left" colspan="5">
+                    @Html.ValueFor(f => f.Descricao)
+                </td>
+            </tr>
+            <tr>
+                <td align="right"><strong>Data de Cadastro: </strong></td>
+                <td align="left" colspan="2">
+                    @Html.ValueFor(f => f.DataCadastro)
+                </td>
+                <td align="right"><strong>E-mail: </strong></td>
+                <td align="left" colspan="2">
+                    @Html.ValueFor(f => f.Email)
+                </td>
+            </tr>
+            <tr>
+                @if (Model.Telefone != "0000000000")
+                {
+                    <td align="right"><strong>Telefone: </strong></td>
+                    <td align="left">
+                        @Html.ValueFor(f => f.Telefone)
+                    </td>
+                }
+                <td align="right"><strong>Celular: </strong></td>
+                <td align="left">
+                    @Html.ValueFor(f => f.CelularFuncionario)
+                </td>
+            </tr>
+            <tr>
+                @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
+                {
+                    <td align="right" colspan="3"><a href="~/Cadastros/AlterarFuncionario/@Model.Id" class="btn btn-default">Alterar</a></td>
+                    <td colspan="3"><a href="~/Cadastros/ExcluirFuncionario/@Model.Id" class="btn btn-danger">Excluir</a></td>
+                }
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        @Html.Action("ContasBancarias", new { destinatarioId = Model.Id })
+    </div>
+</fieldset>
+

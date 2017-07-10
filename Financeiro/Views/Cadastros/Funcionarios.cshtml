@@ -1,0 +1,68 @@
+﻿@model List<Financeiro.Models.Entidades.Destinatario>
+@{
+    ViewBag.Title = "Lista de funcionários";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<fieldset>
+    <legend>Lista de Funcionários</legend>
+    <div class="table-responsive">
+        @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
+        {
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td colspan="5" align="right">
+                            <a href="~/Cadastros/NovoFuncionario" target="principal" class="btn btn-primary btn-sm">NOVO FUNCIONÁRIO</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+        <table class="table table-striped">
+            <thead class="table-bordered">
+                <tr>
+                    <td><strong>ID</strong></td>
+                    <td><strong>APELIDO</strong></td>
+                    <td><strong>DESCRIÇÃO DO FUNCIONÁRIO</strong></td>
+                    <td><strong>DATA DE CADASTRO</strong></td>
+                    <td align="right"><strong>AÇÕES</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var f in Model)
+            {
+                    <tr>
+                        <th scope="row">@f.Id</th>
+                        <td>@f.Apelido</td>
+                        <td>@f.Descricao</td>
+                        <td>@f.DataCadastro</td>
+
+                        <td align="right">
+                            <div class="btn-group">
+                                <a href="~/Cadastros/VerFuncionario/@f.Id" target="principal" class="btn btn-success btn-xs">Ver</a>
+                                @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
+                                {
+                                    <a href="~/Cadastros/AlterarFuncionario/@f.Id" target="principal" class="btn btn-default btn-xs">Alterar</a>
+                                    <a href="~/Cadastros/ExcluirFuncionario/@f.Id" target="principal" class="btn btn-danger btn-xs">Excluir</a>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
+        {
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td colspan="5" align="right">
+                            <a href="~/Cadastros/NovoFuncionario" target="principal" class="btn btn-primary btn-sm">NOVO FUNCIONÁRIO</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+    </div>
+</fieldset>

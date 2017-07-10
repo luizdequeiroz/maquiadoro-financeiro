@@ -1,0 +1,68 @@
+﻿@model List<Financeiro.Models.Entidades.Categoria>
+@{
+    ViewBag.Title = "Lista de Categorias";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<fieldset>
+    <legend>Categorias</legend>
+    <form name="frm" id="frm" method="post" action="" role="form" target="principal">
+        <input type="hidden" name="Id" id="Id" />
+        <input type="hidden" name="Nome" id="Nome" />
+        <input type="hidden" name="Descricao" id="Descricao" />
+        @Html.Raw(ViewBag.ModelError)
+        @{ ViewBag.ModelError = ""; }
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="form-inline" align="right">
+                            <label for="NewCategoria">Nova Categoria: </label>
+                            <input type="text" name="NewNome" id="NewNome" placeholder="nome da categoria" class="form-control valid" data-val="true" data-val-required="Digite o nome!" />
+                            <span class="field-validation-valid" data-valmsg-for="NewNome" data-valmsg-replace="true"></span>
+                            <input type="text" name="NewDescricao" id="NewDescricao" placeholder="descrição da categoria" class="form-control valid" data-val="true" data-val-required="Digite uma descrição!" />
+                            <span class="field-validation-valid" data-valmsg-for="NewDescricao" data-valmsg-replace="true"></span>
+                        </td>
+                        <td colspan="2" align="right">
+                            <input type="button" class="btn btn-primary btn-sm" onclick="cadastrar()" value="Cadastrar" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-striped">
+                <thead class="table-bordered">
+                    <tr>
+                        <td><strong>ID</strong></td>
+                        <td><strong>NOME</strong></td>
+                        <td><strong>DESCRIÇÃO</strong></td>
+                        <td align="right"><strong>AÇÕES</strong></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model)
+                    {
+                        <tr>
+                            <th scope="row">@c.Id</th>
+                            <td id="v1_@c.Id">@c.Nome</td>
+                            <td id="e1_@c.Id" style="display: none"><input type="text" name="AltNome_@c.Id" id="AltNome_@c.Id" value="@c.Nome" class="valid" data-val="true" data-val-required="" /></td>
+                            <td id="v2_@c.Id">@c.Descricao</td>
+                            <td id="e2_@c.Id" style="display: none"><input type="text" name="AltDescricao_@c.Id" id="AltDescricao_@c.Id" value="@c.Descricao" class="valid" data-val="true" data-val-required="" /></td>
+                            <td align="right" id="vb_@c.Id">
+                                <div class="btn-group">
+                                    <input type="button" class="btn btn-default btn-xs" onclick="alterar(@c.Id)" value="Alterar" />
+                                    <a href="#" target="principal" class="btn btn-danger btn-xs">Excluir</a>
+                                </div>
+                            </td>
+                            <td align="right" id="eb_@c.Id" style="display: none">
+                                <div class="btn-group">
+                                    <input type="hidden" name="Id_@c.Id" id="Id_@c.Id" value="@c.Id" />
+                                    <input type="button" class="btn btn-default btn-sm" onclick="submitAlt()" value="Alterar" />
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </form>
+</fieldset>
