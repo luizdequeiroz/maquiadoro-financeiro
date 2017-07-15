@@ -123,7 +123,7 @@ namespace Financeiro.Models.Entidades
 
         [Required(ErrorMessage = "Informe o telefone ou marque como <i>\"Não Tem!\"</i>")]
         public virtual string Telefone { get; set; }
-        [Required(ErrorMessage = "Informe o telefone do fornecedor!")]
+        [Required(ErrorMessage = "Informe o telefone!")]
         public virtual string TelefoneFornecedor
         {
             get
@@ -138,7 +138,7 @@ namespace Financeiro.Models.Entidades
 
         [Required(ErrorMessage = "Informe o celular ou marque como <i>\"Não Tem!\"</i>")]
         public virtual string Celular { get; set; }
-        [Required(ErrorMessage = "Informe o celular do funcionário!")]
+        [Required(ErrorMessage = "Informe o celular!")]
         public virtual string CelularFuncionario
         {
             get

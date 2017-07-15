@@ -131,3 +131,8 @@ textarea {
 .modal {
     overflow: hidden !important;
 }
+
+#formulario {
+
+    min-height: 350px;
+}

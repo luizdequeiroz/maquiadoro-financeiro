@@ -14,7 +14,7 @@ namespace Financeiro.Controllers
     public partial class CadastrosController : Controller
     {
         // Funcionário
-        public ActionResult Funcionarios(string filtro)
+        public ActionResult Funcionarios()
         {
             List<Destinatario> funcionarios = new List<Destinatario>();
             var destinatarios = new DestinatarioDao().Selecionar();
@@ -90,7 +90,7 @@ namespace Financeiro.Controllers
         }
 
         // Fornecedor
-        public ActionResult Fornecedores(string filtro)
+        public ActionResult Fornecedores()
         {
             List<Destinatario> fornecedores = new List<Destinatario>();
             var destinatarios = new DestinatarioDao().Selecionar();
@@ -166,7 +166,7 @@ namespace Financeiro.Controllers
         }
 
         // Terceiro - pendente
-        public ActionResult Terceiros(string filtro)
+        public ActionResult Terceiros()
         {
             List<Destinatario> terceiros = new List<Destinatario>();
             var destinatarios = new DestinatarioDao().Selecionar();
@@ -189,6 +189,7 @@ namespace Financeiro.Controllers
             {
                 try
                 {
+                    t.ETipo = ETipo.Terceiro;
                     t.DataCadastro = DateTime.Now;
                     new DestinatarioDao().Inserir(t);
                     return RedirectToAction("Terceiros");
@@ -231,6 +232,25 @@ namespace Financeiro.Controllers
                 }
             }
             return View();
+        }
+        public ActionResult FormTerceiro(ETipoPessoa eTipoPessoa, int id = 0)
+        {
+            if (id > 0)
+            {
+                var destinarario = new DestinatarioDao().SelecionarPorId(id);
+
+                if ((destinarario.ETipoPessoa == ETipoPessoa.Juridica && destinarario.Celular == "0000000000") || 
+                    (destinarario.ETipoPessoa == ETipoPessoa.Fisica && destinarario.Telefone == "0000000000")) ViewBag.Checked = "checked";
+                else ViewBag.Checked = "";
+
+                destinarario.ETipoPessoa = eTipoPessoa;
+
+                return View(destinarario);
+            }
+            else
+            {
+                return View(new Destinatario { Id = id, ETipoPessoa = eTipoPessoa });
+            }
         }
     }
 }

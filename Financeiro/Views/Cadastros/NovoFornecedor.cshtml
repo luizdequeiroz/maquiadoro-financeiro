@@ -37,7 +37,7 @@
                 @Html.TextBoxFor(f => f.TelefoneFornecedor, new { @class = "form-control" })
             </div>
             <div class="form-group">
-                <label for="Celular" class="control-label">Celular</label> @Html.ValidationMessageFor(f => f.Celular)
+                <label for="Celular" class="control-label">Celular</label> | <input type="checkbox" id="check" @ViewBag.Checked /> Não tem! @Html.ValidationMessageFor(f => f.Celular)
                 @Html.TextBoxFor(f => f.Celular, new { @class = "form-control" })
             </div>
         </div>
@@ -52,5 +52,16 @@
         $("#CNPJ").mask("99.999.999/9999-99");
         $("#TelefoneFornecedor").mask("(99) 9999-9999");
         $("#Celular").mask("(99) 99999-9999");
+
+        $("#check").click(function () {
+            if ($(this).is(':checked')) {
+                $("#Celular").val("0000000000");
+                $("#Celular").attr("readonly", "readonly");
+            }
+            else {
+                $("#Celular").val("");
+                $("#Celular").removeAttr("readonly");
+            }
+        });
     });
 </script>

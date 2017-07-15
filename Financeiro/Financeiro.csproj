@@ -199,6 +199,10 @@
     <Content Include="Views\Cadastros\ContasBancarias.cshtml" />
     <Content Include="Views\Shared\_SubLayout.cshtml" />
     <Content Include="Views\Cadastros\NovaContaBancaria.cshtml" />
+    <Content Include="Views\Cadastros\NovoTerceiro.cshtml" />
+    <Content Include="Views\Cadastros\FormTerceiro.cshtml" />
+    <Content Include="Views\Cadastros\VerTerceiro.cshtml" />
+    <Content Include="Views\Cadastros\AlterarTerceiro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

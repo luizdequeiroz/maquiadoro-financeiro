@@ -25,26 +25,28 @@
                     <td><strong>ID</strong></td>
                     <td><strong>NOME</strong></td>
                     <td><strong>DESCRIÇÃO</strong></td>
+                    <td><strong>TIPO DE PESSOA</strong></td>
                     <td><strong>DATA DE CADASTRO</strong></td>
                     <td align="right"><strong>AÇÕES</strong></td>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var t in Model)
-            {
+                {
                     <tr>
                         <th scope="row">@t.Id</th>
                         <td>@t.Nome</td>
                         <td>@t.Descricao</td>
+                        <td>@t.ETipoPessoa</td>
                         <td>@t.DataCadastro</td>
 
                         <td align="right">
                             <div class="btn-group">
-                                <a href="~/Cadastros/VerFornecedor/@t.Id" target="principal" class="btn btn-success btn-xs">Ver</a>
+                                <a href="~/Cadastros/VerTerceiro/@t.Id" target="principal" class="btn btn-success btn-xs">Ver</a>
                                 @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
                                 {
-                                    <a href="~/Cadastros/AlterarFornecedor/@t.Id" target="principal" class="btn btn-default btn-xs">Alterar</a>
-                                    <a href="~/Cadastros/ExcluirFornecedor/@t.Id" target="principal" class="btn btn-danger btn-xs">Excluir</a>
+                                    <a href="~/Cadastros/AlterarTerceiro/@t.Id" target="principal" class="btn btn-default btn-xs">Alterar</a>
+                                    <a href="~/Cadastros/ExcluirTerceiro/@t.Id" target="principal" class="btn btn-danger btn-xs">Excluir</a>
                                 }
                             </div>
                         </td>
