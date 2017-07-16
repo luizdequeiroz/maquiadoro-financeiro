@@ -12,7 +12,7 @@ namespace Financeiro.Controllers
     [AuthenticationSession]
     public class DesktopController : Controller
     {
-        public ActionResult Saguao()
+        public ActionResult Painel()
         {
             return View();
         }

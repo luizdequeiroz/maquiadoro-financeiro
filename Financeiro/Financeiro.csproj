@@ -178,7 +178,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Views\Desktop\Inicio.cshtml" />
-    <Content Include="Views\Desktop\Saguao.cshtml" />
+    <Content Include="Views\Desktop\Painel.cshtml" />
     <Content Include="Views\Shared\_PartialLayout.cshtml" />
     <Content Include="Views\Administrativo\Usuarios.cshtml" />
     <Content Include="Views\Administrativo\NovoUsuario.cshtml" />

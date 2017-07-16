@@ -18,7 +18,7 @@ namespace Financeiro.Controllers
             AuthenticationSession.ScriptSession = "";
             if (Session["id"] == null)
                 return View();
-            else return RedirectToAction("Saguao", "Desktop");
+            else return RedirectToAction("Painel", "Desktop");
         }
 
         [HttpPost]
@@ -40,7 +40,7 @@ namespace Financeiro.Controllers
                             Session["id"] = us.Id;
                             Session["nivel"] = us.Nivel;
                             Session["nome"] = us.Nome;
-                            return RedirectToAction("Saguao", "Desktop");
+                            return RedirectToAction("Painel", "Desktop");
                         }
                         else
                         {
