@@ -165,7 +165,7 @@ namespace Financeiro.Controllers
             return View();
         }
 
-        // Terceiro - pendente
+        // Terceiro
         public ActionResult Terceiros()
         {
             List<Destinatario> terceiros = new List<Destinatario>();
@@ -222,6 +222,7 @@ namespace Financeiro.Controllers
                 {
                     var te = new DestinatarioDao().SelecionarPorId(t.Id);
                     t.DataCadastro = te.DataCadastro;
+                    t.ETipo = te.ETipo;
                     new DestinatarioDao().Alterar(t);
                     return RedirectToAction("Terceiros");
                 }

@@ -48,7 +48,9 @@
                     $("#Celular").attr("readonly", "readonly");
                 }
                 else {
-                    $("#Celular").val("@Model.Celular");
+                    if ("@Model.Celular" != "0000000000")
+                        $("#Celular").val("@Model.Celular");
+                    else $("#Celular").val("");
                     $("#Celular").removeAttr("readonly");
                 }
             });
@@ -57,13 +59,20 @@
     if (Model.Id > 0)
     {
         <script>
-        $(document).ready(function () {
-            if ("@ViewBag.Checked" == "checked")
-            {
-                $("#Celular").val("@Model.Celular");
-                $("#Celular").attr("readonly", "readonly");
-            }
-        });
+            $(document).ready(function () {
+                if ("@ViewBag.Checked" == "checked")
+                {
+                    $("#Celular").val("@Model.Celular");
+                    if ("@Model.TelefoneFornecedor" != "0000000000")
+                        $("#TelefoneFornecedor").val("@Model.TelefoneFornecedor");
+                    else $("#TelefoneFornecedor").val("");
+                    $("#Celular").attr("readonly", "readonly");
+                    if ($('#Celular').val() != "0000000000") {
+                        $('#Celular').removeAttr('readonly');
+                        $('#check').removeAttr('checked');
+                    }
+                }
+            });
         </script>
     }
 }
@@ -113,7 +122,9 @@ else
                     $("#Telefone").attr("readonly", "readonly");
                 }
                 else {
-                    $("#Telefone").val("@Model.Telefone");
+                    if ("@Model.Telefone" != "0000000000")
+                        $("#Telefone").val("@Model.Telefone");
+                    else $("#Telefone").val("");
                     $("#Telefone").removeAttr("readonly");
                 }
             });
@@ -122,16 +133,23 @@ else
     if (Model.Id > 0)
     {
         <script>
-        $(document).ready(function () {
-            if ("@ViewBag.Checked" == "checked") {
-                $("#Telefone").val("@Model.Telefone");
-                $("#Telefone").attr("readonly", "readonly");
-            }
-        });
+            $(document).ready(function () {
+                if ("@ViewBag.Checked" == "checked") {
+                    $("#Telefone").val("@Model.Telefone");
+                    if ("@Model.CelularFuncionario" != "0000000000")
+                        $("#CelularFuncionario").val("@Model.CelularFuncionario");
+                    else $("#CelularFuncionario").val("");
+                    $("#Telefone").attr("readonly", "readonly");
+                    if ($('#Telefone').val() != "0000000000") {
+                        $('#Telefone').removeAttr('readonly');
+                        $('#check').removeAttr('checked');
+                    }
+                }
+            });
         </script>
     }
 }
 <hr class="col-md-12" />
 <div class="col-md-12 form-group text-center">
-    <input type="submit" class="btn btn-primary" value="Cadastrar" />
+    <input type="submit" class="btn btn-primary" value="Alterar" />
 </div>
