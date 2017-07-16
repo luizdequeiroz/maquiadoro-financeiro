@@ -5,37 +5,48 @@
 }
 <div class="table-responsive">
     <table class="table table-striped">
-        <thead class="table-bordered">
-            <tr>
-                <td><strong>BANCO</strong></td>
-                <td><strong>AGÊNCIA</strong></td>
-                <td><strong>CONTA</strong></td>
-                <td>
-                    @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
-                    {
-                        <a data-toggle="modal" data-backdrop="false" data-target="#novaconta" class="btn btn-primary btn-xs">NOVA</a>
-                    }
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var cb in Model)
-            {
+        @if (Model.Count > 0)
+        {
+            <thead class="table-bordered">
                 <tr>
-                    <td>@cb.NomeBanco</td>
-                    <td scope="row">@cb.Agencia</td>
-                    <td scope="row">@cb.Conta</td>
-                    <td align="right">
-                        @{ var excluir = ""; }
+                    <td><strong>BANCO</strong></td>
+                    <td><strong>AGÊNCIA</strong></td>
+                    <td><strong>CONTA</strong></td>
+                    <td>
                         @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
                         {
-                            excluir = "<a class='btn btn-danger btn-xs btn-block' href='/Cadastros/ExcluirFuncionario/" + ViewBag.DestinatarioId + "'>Excluir</a>";
+                            <a data-toggle="modal" data-backdrop="false" data-target="#novaconta" class="btn btn-primary btn-xs">NOVA</a>
                         }
-                        <a class="btn btn-primary btn-xs" data-toggle="popover" data-placement="left" title="@cb.Nome" data-content="<b>Banco:</b> @cb.NomeBanco<br/><b>Agência:</b> @cb.Agencia<br/><b>Conta:</b> @cb.Conta<br/>@excluir" data-html="true">Ver</a>
                     </td>
                 </tr>
-            }
-        </tbody>
+            </thead>
+            <tbody>
+                @foreach (var cb in Model)
+                {
+                    <tr>
+                        <td>@cb.NomeBanco</td>
+                        <td scope="row">@cb.Agencia</td>
+                        <td scope="row">@cb.Conta</td>
+                        <td align="right">
+                            @{ var excluir = ""; }
+                            @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
+                            {
+                                excluir = "<a class='btn btn-danger btn-xs btn-block' href='/Cadastros/ExcluirFuncionario/" + ViewBag.DestinatarioId + "'>Excluir</a>";
+                            }
+                            <a class="btn btn-primary btn-xs" data-toggle="popover" data-placement="left" title="@cb.Nome" data-content="<b>Banco:</b> @cb.NomeBanco<br/><b>Agência:</b> @cb.Agencia<br/><b>Conta:</b> @cb.Conta<br/>@excluir" data-html="true">Ver</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        }
+        else
+        {
+            <thead class="table-bordered">
+                <tr>
+                    <td colspan="4"><strong>Não há contas bancárias!</strong></td>
+                </tr>
+            </thead>
+        }
     </table>
 </div>
 @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)

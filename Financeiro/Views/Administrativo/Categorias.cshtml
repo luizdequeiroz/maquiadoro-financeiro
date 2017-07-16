@@ -30,38 +30,49 @@
                 </tbody>
             </table>
             <table class="table table-striped">
-                <thead class="table-bordered">
-                    <tr>
-                        <td><strong>ID</strong></td>
-                        <td><strong>NOME</strong></td>
-                        <td><strong>DESCRIÇÃO</strong></td>
-                        <td align="right"><strong>AÇÕES</strong></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var c in Model)
-                    {
+                @if (Model.Count > 0)
+                {
+                    <thead class="table-bordered">
                         <tr>
-                            <th scope="row">@c.Id</th>
-                            <td id="v1_@c.Id">@c.Nome</td>
-                            <td id="e1_@c.Id" style="display: none"><input type="text" name="AltNome_@c.Id" id="AltNome_@c.Id" value="@c.Nome" class="valid" data-val="true" data-val-required="" /></td>
-                            <td id="v2_@c.Id">@c.Descricao</td>
-                            <td id="e2_@c.Id" style="display: none"><input type="text" name="AltDescricao_@c.Id" id="AltDescricao_@c.Id" value="@c.Descricao" class="valid" data-val="true" data-val-required="" /></td>
-                            <td align="right" id="vb_@c.Id">
-                                <div class="btn-group">
-                                    <input type="button" class="btn btn-default btn-xs" onclick="alterar(@c.Id)" value="Alterar" />
-                                    <a href="#" target="principal" class="btn btn-danger btn-xs">Excluir</a>
-                                </div>
-                            </td>
-                            <td align="right" id="eb_@c.Id" style="display: none">
-                                <div class="btn-group">
-                                    <input type="hidden" name="Id_@c.Id" id="Id_@c.Id" value="@c.Id" />
-                                    <input type="button" class="btn btn-default btn-sm" onclick="submitAlt()" value="Alterar" />
-                                </div>
-                            </td>
+                            <td><strong>ID</strong></td>
+                            <td><strong>NOME</strong></td>
+                            <td><strong>DESCRIÇÃO</strong></td>
+                            <td align="right"><strong>AÇÕES</strong></td>
                         </tr>
-                    }
-                </tbody>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in Model)
+                        {
+                            <tr>
+                                <th scope="row">@c.Id</th>
+                                <td id="v1_@c.Id">@c.Nome</td>
+                                <td id="e1_@c.Id" style="display: none"><input type="text" name="AltNome_@c.Id" id="AltNome_@c.Id" value="@c.Nome" class="valid" data-val="true" data-val-required="" /></td>
+                                <td id="v2_@c.Id">@c.Descricao</td>
+                                <td id="e2_@c.Id" style="display: none"><input type="text" name="AltDescricao_@c.Id" id="AltDescricao_@c.Id" value="@c.Descricao" class="valid" data-val="true" data-val-required="" /></td>
+                                <td align="right" id="vb_@c.Id">
+                                    <div class="btn-group">
+                                        <input type="button" class="btn btn-default btn-xs" onclick="alterar(@c.Id)" value="Alterar" />
+                                        <a href="#" target="principal" class="btn btn-danger btn-xs">Excluir</a>
+                                    </div>
+                                </td>
+                                <td align="right" id="eb_@c.Id" style="display: none">
+                                    <div class="btn-group">
+                                        <input type="hidden" name="Id_@c.Id" id="Id_@c.Id" value="@c.Id" />
+                                        <input type="button" class="btn btn-default btn-sm" onclick="submitAlt()" value="Alterar" />
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+                else
+                {
+                    <thead class="table-bordered">
+                        <tr>
+                            <td colspan="4"><strong>Não há categorias registradas!</strong></td>
+                        </tr>
+                    </thead>
+                }
             </table>
         </div>
     </form>
