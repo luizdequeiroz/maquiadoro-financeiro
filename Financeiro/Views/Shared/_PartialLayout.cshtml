@@ -26,6 +26,14 @@
     <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+            $('[data-class="modal-draggable"]').draggable({
+                handle: ".modal-header"
+            });
+        });
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

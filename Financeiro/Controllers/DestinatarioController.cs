@@ -88,6 +88,14 @@ namespace Financeiro.Controllers
             }
             return View();
         }
+        [Normal]
+        public ActionResult ExcluirFuncionario(int id)
+        {
+            var f = new DestinatarioDao().SelecionarPorId(id);
+            new ContaBancoDao().ExcluirContasPorDestinatario(id);
+            new DestinatarioDao().Excluir(f);
+            return RedirectToAction("Funcionarios");
+        }
 
         // Fornecedor
         public ActionResult Fornecedores()
@@ -163,6 +171,14 @@ namespace Financeiro.Controllers
                 }
             }
             return View();
+        }
+        [Normal]
+        public ActionResult ExcluirFornecedor(int id)
+        {
+            var f = new DestinatarioDao().SelecionarPorId(id);
+            new ContaBancoDao().ExcluirContasPorDestinatario(id);
+            new DestinatarioDao().Excluir(f);
+            return RedirectToAction("Fornecedores");
         }
 
         // Terceiro
@@ -252,6 +268,14 @@ namespace Financeiro.Controllers
             {
                 return View(new Destinatario { Id = id, ETipoPessoa = eTipoPessoa });
             }
+        }
+        [Normal]
+        public ActionResult ExcluirTerceiro(int id)
+        {
+            var t = new DestinatarioDao().SelecionarPorId(id);
+            new ContaBancoDao().ExcluirContasPorDestinatario(id);
+            new DestinatarioDao().Excluir(t);
+            return RedirectToAction("Terceiros");
         }
     }
 }
