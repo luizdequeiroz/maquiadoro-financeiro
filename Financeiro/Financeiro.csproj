@@ -151,11 +151,13 @@
     <Compile Include="Models\DAOs\ContaBancoDao.cs" />
     <Compile Include="Models\DAOs\ContaPagarDao.cs" />
     <Compile Include="Models\DAOs\DestinatarioDao.cs" />
+    <Compile Include="Models\DAOs\InativoDao.cs" />
     <Compile Include="Models\DAOs\UsuarioDao.cs" />
     <Compile Include="Models\Entidades\ContaBanco.cs" />
     <Compile Include="Models\Entidades\Categoria.cs" />
     <Compile Include="Models\Entidades\ContaPagar.cs" />
     <Compile Include="Models\Entidades\Destinatario.cs" />
+    <Compile Include="Models\Entidades\Inativo.cs" />
     <Compile Include="Models\Entidades\Usuario.cs" />
     <Compile Include="Models\Enums\ENivel.cs" />
     <Compile Include="Models\Enums\EOperacao.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="Models\Maps\CategoriaMap.cs" />
     <Compile Include="Models\Maps\ContaBancoMap.cs" />
     <Compile Include="Models\Maps\DestinatarioMap.cs" />
+    <Compile Include="Models\Maps\InativoMap.cs" />
     <Compile Include="Models\Maps\UsuarioMap.cs" />
     <Compile Include="Models\SessionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -53,6 +53,7 @@ textarea {
 
 #principal, #modal {
     width: 100%;
+    min-height: 520px;
 }
 
 .vborder {
@@ -136,3 +137,4 @@ textarea {
 
     min-height: 350px;
 }
+

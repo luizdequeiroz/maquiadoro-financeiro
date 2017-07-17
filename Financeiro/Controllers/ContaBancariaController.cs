@@ -1,6 +1,7 @@
 ﻿using Financeiro.Controllers.Authentication;
 using Financeiro.Models.DAOs;
 using Financeiro.Models.Entidades;
+using Financeiro.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace Financeiro.Controllers
                 try
                 {
                     new ContaBancoDao().Inserir(cb);
-                    return RedirectToAction("VerFuncionario", new { id = cb.DestinatarioId });
+                    return RedirectToAction("VerDestinatario", new { id = cb.DestinatarioId });
                 }
                 catch (Exception e)
                 {
@@ -43,6 +44,21 @@ namespace Financeiro.Controllers
                 }
             }
             return View();
+        }
+        [Normal]
+        public ActionResult ExcluirContaBancaria(int id)
+        {
+            var cb = new ContaBancoDao().SelecionarPorId(id);
+            var destinatarioId = cb.DestinatarioId;
+            new ContaBancoDao().Excluir(cb);
+            return RedirectToAction("VerDestinatario", new { id = destinatarioId });
+        }
+        public ActionResult VerDestinatario(int id)
+        {
+            var tipo = new DestinatarioDao().SelecionarPorId(id).ETipo;
+            if (tipo == ETipo.Fornecedor) return RedirectToAction("VerFornecedor", new { id = id });
+            else if (tipo == ETipo.Funcionario) return RedirectToAction("VerFuncionario", new { id = id });
+            else return RedirectToAction("VerTerceiro", new { id = id });
         }
     }
 }

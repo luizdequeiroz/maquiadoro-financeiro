@@ -1,4 +1,5 @@
-﻿using NHibernate;
+﻿using Financeiro.Models.Entidades;
+using NHibernate;
 using NHibernate.Linq;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Financeiro.Models
         {
             using (var session = SessionFactory.AbrirSession())
             {
-                using(ITransaction transacao = session.BeginTransaction())
+                using (ITransaction transacao = session.BeginTransaction())
                 {
                     try
                     {
@@ -79,6 +80,18 @@ namespace Financeiro.Models
                 {
                     try
                     {
+                        int id = 0;
+                        string dados = "";
+                        var props = t.GetType().GetProperties();
+                        var table = t.GetType().Name;
+
+                        foreach (var p in props)
+                            if (id == 0) id = int.Parse(p.GetValue(t, null).ToString());
+                            else if (dados == "") dados += p.GetValue(t, null).ToString();
+                            else dados += "|" + p.GetValue(t, null).ToString();
+
+                        session.Save(new Inativo { IdInativo = id, Dados = dados, Tabela = table });
+
                         session.Delete(t);
                         transacao.Commit();
                     }
