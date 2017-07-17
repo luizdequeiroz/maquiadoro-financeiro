@@ -9,10 +9,11 @@ using System.Web.Mvc;
 
 namespace Financeiro.Controllers
 {
-    [Administrativo]
+    [AuthenticationSession]
     public class AdministrativoController : Controller
     {
         // Usuário
+        [Administrativo]
         public ActionResult Usuarios(string filtro = "")
         {
             List<Usuario> usuarios = new List<Usuario>();
@@ -23,6 +24,7 @@ namespace Financeiro.Controllers
 
             return View(usuarios);
         }
+        [Administrativo]
         public ActionResult NovoUsuario()
         {
             return View();
@@ -46,6 +48,7 @@ namespace Financeiro.Controllers
             }
             return View();
         }
+        [Administrativo]
         public ActionResult AlterarUsuario(int id)
         {
             var u = new UsuarioDao().SelecionarPorId(id);
@@ -72,8 +75,16 @@ namespace Financeiro.Controllers
             }
             return View();
         }
+        [Administrativo]
+        public ActionResult ExcluirUsuario(int id)
+        {
+            var u = new UsuarioDao().SelecionarPorId(id);
+            new UsuarioDao().Excluir(u);
+            return RedirectToAction("Usuarios");
+        }
 
         // Categoria
+        [Administrativo]
         public ActionResult Categorias(string filtro = "")
         {
             List<Categoria> categorias = new List<Categoria>();
@@ -120,6 +131,13 @@ namespace Financeiro.Controllers
                 }
             }
             return View();
+        }
+        [Administrativo]
+        public ActionResult ExcluirCategoria(int id)
+        {
+            var c = new CategoriaDao().SelecionarPorId(id);
+            new CategoriaDao().Excluir(c);
+            return RedirectToAction("Categorias");
         }
     }
 }

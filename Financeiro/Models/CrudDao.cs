@@ -88,7 +88,7 @@ namespace Financeiro.Models
                         foreach (var p in props)
                             if (id == 0) id = int.Parse(p.GetValue(t, null).ToString());
                             else if (dados == "") dados += p.GetValue(t, null).ToString();
-                            else dados += "|" + p.GetValue(t, null).ToString();
+                            else if (p.GetValue(t,null) != null) dados += "|" + p.GetValue(t, null).ToString();
 
                         session.Save(new Inativo { IdInativo = id, Dados = dados, Tabela = table });
 
