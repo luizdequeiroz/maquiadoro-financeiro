@@ -1,0 +1,72 @@
+﻿@model Financeiro.Models.Entidades.Destinatario
+@{
+    ViewBag.Title = "Alteração de Funcionário";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<fieldset>
+    <legend>Alteração de Funcionário</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Nome" class="control-label">Nome</label> @Html.ValidationMessageFor(f => f.Nome)
+                @Html.TextBoxFor(f => f.Nome, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="Apelido" class="control-label">Apelido</label> @Html.ValidationMessageFor(f => f.Apelido)
+                @Html.TextBoxFor(f => f.Apelido, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="CPF" class="control-label">CPF</label> @Html.ValidationMessageFor(f => f.CPF)
+                @Html.TextBoxFor(f => f.CPF, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="Descricao" class="control-label">Descrição</label> @Html.ValidationMessageFor(f => f.Descricao)
+                @Html.TextAreaFor(f => f.Descricao, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Email" class="control-label">E-mail</label> @Html.ValidationMessageFor(f => f.Email)
+                @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="Telefone" class="control-label">Telefone</label> | <input type="checkbox" id="check" @ViewBag.Checked /> Não tem! @Html.ValidationMessageFor(f => f.Telefone)
+                @Html.TextBoxFor(f => f.Telefone, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="CelularFuncionario" class="control-label">Celular</label> @Html.ValidationMessageFor(f => f.CelularFuncionario)
+                @Html.TextBoxFor(f => f.CelularFuncionario, new { @class = "form-control" })
+            </div>
+        </div>
+        <hr class="col-md-12" />
+        <div class="col-md-12 form-group text-center">
+            <input type="submit" class="btn btn-primary" value="Alterar" />
+        </div>
+    }
+</fieldset>
+<script>
+    $(document).ready(function () {
+        $("#CPF").mask("999.999.999-99");
+        $("#Telefone").mask("(99) 9999-9999");
+        $("#CelularFuncionario").mask("(99) 99999-9999");
+
+        $("#check").click(function () {
+            if ($(this).is(':checked')) {
+                $("#Telefone").val("0000000000");
+                $("#Telefone").attr("readonly","readonly");
+            }
+            else {
+                $("#Telefone").val("");
+                $("#Telefone").removeAttr("readonly");
+            }
+        });
+
+        if ("@ViewBag.Checked" == "checked") {
+            $("#Telefone").val("0000000000");
+            $("#Telefone").attr("readonly", "readonly");
+        }
+    });
+</script>

@@ -1,4 +1,4 @@
-﻿@model Financeiro.Models.Entidades.Usuario
+﻿@model Financeiro.Models.Entidades.Funcionario
 @{
     ViewBag.Title = "Entrada";
     Layout = "~/Views/Shared/_NeutralLayout.cshtml";
@@ -12,8 +12,8 @@
             @Html.ValidationSummary(true)
             <div class="form-group">
                 <label for="EmailEntrada" class="control-label">E-Mail</label>
-                @Html.ValidationMessageFor(u => u.EmailEntrada)
-                @Html.TextBoxFor(u => u.EmailEntrada, new { @class = "form-control" })
+                @Html.ValidationMessageFor(f => f.Usuario)
+                @Html.TextBoxFor(u => u.Usuario, new { @class = "form-control" })
             </div>
             <div class="form-group">
                 <label for="Senha" class="control-label">Senha</label>

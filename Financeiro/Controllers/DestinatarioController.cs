@@ -1,5 +1,4 @@
-﻿using Financeiro.Controllers.Authentication;
-using Financeiro.Models.DAOs;
+﻿/*using Financeiro.Controllers.Authentication;
 using Financeiro.Models.Entidades;
 using Financeiro.Models.Enums;
 using System;
@@ -20,7 +19,7 @@ namespace Financeiro.Controllers
             var destinatarios = new DestinatarioDao().Selecionar();
 
             foreach (var d in destinatarios)
-                if (d.ETipo == ETipo.Funcionario)
+                if (d.ETipo == ECategoria.Funcionario)
                     funcionarios.Add(d);
 
             return View(funcionarios);
@@ -37,7 +36,7 @@ namespace Financeiro.Controllers
             {
                 try
                 {
-                    f.ETipo = ETipo.Funcionario;
+                    f.ETipo = ECategoria.Funcionario;
                     f.ETipoPessoa = ETipoPessoa.Fisica;
                     f.DataCadastro = DateTime.Now;
                     new DestinatarioDao().Inserir(f);
@@ -104,7 +103,7 @@ namespace Financeiro.Controllers
             var destinatarios = new DestinatarioDao().Selecionar();
 
             foreach (var d in destinatarios)
-                if (d.ETipo == ETipo.Fornecedor)
+                if (d.ETipo == ECategoria.Fornecedor)
                     fornecedores.Add(d);
 
             return View(fornecedores);
@@ -121,7 +120,7 @@ namespace Financeiro.Controllers
             {
                 try
                 {
-                    f.ETipo = ETipo.Fornecedor;
+                    f.ETipo = ECategoria.Fornecedor;
                     f.ETipoPessoa = ETipoPessoa.Juridica;
                     f.DataCadastro = DateTime.Now;
                     new DestinatarioDao().Inserir(f);
@@ -188,7 +187,7 @@ namespace Financeiro.Controllers
             var destinatarios = new DestinatarioDao().Selecionar();
 
             foreach (var d in destinatarios)
-                if (d.ETipo == ETipo.Terceiro)
+                if (d.ETipo == ECategoria.Terceiro)
                     terceiros.Add(d);
 
             return View(terceiros);
@@ -205,7 +204,7 @@ namespace Financeiro.Controllers
             {
                 try
                 {
-                    t.ETipo = ETipo.Terceiro;
+                    t.ETipo = ECategoria.Terceiro;
                     t.DataCadastro = DateTime.Now;
                     new DestinatarioDao().Inserir(t);
                     return RedirectToAction("Terceiros");
@@ -278,4 +277,4 @@ namespace Financeiro.Controllers
             return RedirectToAction("Terceiros");
         }
     }
-}
+}*/

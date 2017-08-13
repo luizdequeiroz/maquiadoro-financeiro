@@ -1,0 +1,155 @@
+﻿@model Financeiro.Models.Entidades.ContaPagar
+@{
+    ViewBag.Title = "Inclusão de Conta(s)";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<fieldset>
+    <legend>Inclusão de Conta(s)</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="CategoriaId" class="control-label">Categoria</label> @Html.ValidationMessageFor(cp => cp.CategoriaId)
+                @Html.Action("ListCategorias", "Uteis")
+            </div>
+            <div class="form-group">
+                <label for="Valor" class="control-label">Valor</label> @Html.ValidationMessageFor(cp => cp.Valor)
+                @Html.TextBoxFor(cp => cp.Valor, new { @class = "form-control calc-prev", placeholder = "0,00", value = "0,00" })
+            </div>
+            <div class="form-group">
+                <label for="Acrescimo" class="control-label">Acréscimo</label>
+                @Html.TextBoxFor(cp => cp.Acrescimo, new { @class = "form-control calc-prev", placeholder = "0,00" })
+            </div>
+            <div class="form-group">
+                <label for="Desconto" class="control-label">Desconto</label>
+                @Html.TextBoxFor(cp => cp.Desconto, new { @class = "form-control calc-prev", placeholder = "0,00" })
+            </div>
+            <div class="form-group">
+                <label for="ValorPrevisto" class="control-label">Valor Previsto</label>
+                @Html.TextBoxFor(cp => cp.ValorPrevisto, new { @class = "form-control", placeholder = "0.00" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="TipoDestinatario" class="control-label">Tipo de Destinatário</label>
+                <select name="TipoDestinatario" id="TipoDestinatario" class="form-control" onchange="$('#DestinatarioId').load('/Uteis/ListDestinatarios/?eTipo=' + this.value)">
+                    <option value="">Selecione...</option>
+                    <option value="1">Funcionário</option>
+                    <option value="2">Fornecedor</option>
+                    <option value="3">Terceiro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="DestinatarioId" class="control-label">Destinatário</label> @Html.ValidationMessageFor(cp => cp.DestinatarioId)
+                <select name="DestinatarioId" id="DestinatarioId" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label for="Descricao" class="control-label">Descrição</label> @Html.ValidationMessageFor(cp => cp.Descricao)
+                @Html.TextAreaFor(cp => cp.Descricao, 4, 10, new { @class = "form-control", style = "max-height: 109px; min-height: 109px;" })
+            </div>
+            <div class="form-group">
+                <label for="sVencimento" class="control-label">Vencimento</label> @Html.ValidationMessageFor(cp => cp.sVencimento)
+                @Html.TextBoxFor(cp => cp.sVencimento, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Forma" class="control-label">Situação da Conta</label>
+                <div class="form-inline">
+                    <label class="radio-inline"><input type="radio" name="Situacao" value="1" class="situacao-check" checked />A Pagar</label>
+                    <label class="radio-inline"><input type="radio" name="Situacao" value="2" class="situacao-check" />Paga</label>
+                </div>
+            </div>
+            <div class="form-group a-pagar">
+                <label for="Modo" class="control-label">Modo de Geração</label>
+                <div class="form-inline">
+                    <label class="radio-inline"><input type="radio" id="modo-normal" name="Modo" value="1" class="modo-check" checked />Normal</label>
+                    <label class="radio-inline"><input type="radio" name="Modo" value="2" class="modo-check" />Despesa Fixa</label>
+                    <label class="radio-inline"><input type="radio" name="Modo" value="3" class="modo-check" />Repetida</label>
+                </div>
+            </div>
+            <div class="form-group paga">
+                <label for="ObsBaixa" class="control-label">Observação sobre a Baixa</label>
+                @Html.TextAreaFor(cp => cp.ObsBaixa, 4, 10, new { @class = "form-control", style = "max-height: 109px; min-height: 109px;" })
+            </div>
+            <div class="form-group paga">
+                <label for="IdBanco" class="control-label">Conta Bancária</label>
+                <select id="IdBanco" name="IdBanco" class="form-control"></select>
+            </div>
+            <div class="form-group paga">
+                <label for="ValorBaixado" class="control-label">Valor Pago</label>
+                @Html.TextBoxFor(cp => cp.ValorBaixado, new { @class = "form-control", placeholder = "0,00", name = "" })
+            </div>
+            <div class="form-group no-normal">
+                <span class="text-danger fixa">Será gerado até dezembro de @DateTime.Now.Year!</span>
+                <div class="form-inline repetida">
+                    <label for="Qtd" class="control-label">Qtd.</label>
+                    <input type="number" id="Qtd" min="2" placeholder="2" value="2" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <hr class="col-md-12" />
+        <div class="col-md-12 text-center">
+            <input type="submit" class="btn btn-primary" value="Gerar Conta" />
+        </div>
+    }
+</fieldset>
+<script>
+    $(document).ready(function () {
+        $('#sVencimento').mask('99/99/9999');
+
+        $('.calc-prev').keyup(function () {
+
+            var valor = parseFloat($('#Valor').val().replace(',', '.').replace('', 0));
+            var acres = parseFloat($('#Acrescimo').val().replace(',', '.').replace('', 0));
+            var desco = parseFloat($('#Desconto').val().replace(',', '.').replace('', 0));
+            $('#ValorPrevisto').val(parseFloat(valor + acres - desco).toFixed(2));
+
+            $('#Acrescimo').val(acres);
+            $('#Desconto').val(desco);
+        });
+
+        $('.paga').css('display', 'none');
+        $('.situacao-check').change(function () {
+            if ($(this).val() != 1) {
+                $('#modo-normal').attr('checked', 'checked');
+                $('.a-pagar').css('display', 'none');
+                $('.paga').removeAttr('style');
+                $('.fixa').css('display', 'none');
+                $('.repetida').css('display', 'none');
+                $('#IdBanco').load('/Uteis/ListContasBancarias/?destinatarioId=' + $('#DestinatarioId').val());
+                $('#ValorBaixado').attr('name', 'ValorBaixado');
+            } else {
+                $('.a-pagar').removeAttr('style');
+                $('.paga').css('display', 'none');
+                $('#ValorBaixado').removeAttr('name');
+            }
+        });
+
+        $('.fixa').css('display', 'none');
+        $('.repetida').css('display', 'none');
+        $('.modo-check').change(function () {
+            if ($(this).val() == 2) {
+                $('.no-normal').removeAttr('style');
+                $('.fixa').removeAttr('style');
+                $('.repetida').css('display', 'none');
+                $('#Qtd').removeAttr('name');
+            } else if ($(this).val() == 3) {
+                $('.no-normal').removeAttr('style');
+                $('.fixa').css('display', 'none');
+                $('.repetida').removeAttr('style');
+                $('#Qtd').attr('name', 'Qtd');
+            } else {
+                $('.fixa').css('display', 'none');
+                $('.repetida').css('display', 'none');
+                $('#Qtd').removeAttr('name');
+            }
+        });
+
+        $('#Qtd').keyup(function () {
+            if ($(this).val() < 2) $(this).val(2);
+        });
+    });
+</script>

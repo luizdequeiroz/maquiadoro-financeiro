@@ -1,5 +1,4 @@
-﻿using Financeiro.Controllers.Authentication;
-using Financeiro.Models.DAOs;
+﻿/*using Financeiro.Controllers.Authentication;
 using Financeiro.Models.Entidades;
 using System;
 using System.Collections.Generic;
@@ -140,4 +139,4 @@ namespace Financeiro.Controllers
             return RedirectToAction("Categorias");
         }
     }
-}
+}*/

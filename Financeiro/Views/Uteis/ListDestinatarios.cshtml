@@ -1,0 +1,10 @@
+﻿@model List<Financeiro.Models.Entidades.Destinatario>
+@{
+    Layout = null;
+}
+<option value="">Selecione...</option>
+@foreach (var d in Model)
+{
+    <option value="@d.Id">@d.Apelido</option>
+}
+

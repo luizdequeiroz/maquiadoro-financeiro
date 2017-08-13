@@ -146,29 +146,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CrudDao.cs" />
-    <Compile Include="Models\DAOs\CategoriaDao.cs" />
-    <Compile Include="Models\DAOs\ContaBancoDao.cs" />
-    <Compile Include="Models\DAOs\ContaPagarDao.cs" />
-    <Compile Include="Models\DAOs\DestinatarioDao.cs" />
-    <Compile Include="Models\DAOs\InativoDao.cs" />
-    <Compile Include="Models\DAOs\UsuarioDao.cs" />
-    <Compile Include="Models\Entidades\ContaBanco.cs" />
-    <Compile Include="Models\Entidades\Categoria.cs" />
-    <Compile Include="Models\Entidades\ContaPagar.cs" />
-    <Compile Include="Models\Entidades\Destinatario.cs" />
-    <Compile Include="Models\Entidades\Inativo.cs" />
-    <Compile Include="Models\Entidades\Usuario.cs" />
-    <Compile Include="Models\Enums\ENivel.cs" />
-    <Compile Include="Models\Enums\EOperacao.cs" />
-    <Compile Include="Models\Enums\ETipo.cs" />
-    <Compile Include="Models\Enums\ETipoPessoa.cs" />
-    <Compile Include="Models\ICrudDao.cs" />
-    <Compile Include="Models\Maps\CategoriaMap.cs" />
-    <Compile Include="Models\Maps\ContaBancoMap.cs" />
-    <Compile Include="Models\Maps\DestinatarioMap.cs" />
-    <Compile Include="Models\Maps\InativoMap.cs" />
-    <Compile Include="Models\Maps\UsuarioMap.cs" />
+    <Compile Include="Models\Dao\ExtensionDao.cs" />
+    <Compile Include="Models\Dao\FuncionarioDao.cs" />
+    <Compile Include="Models\Entidades\Autorizacao.cs" />
+    <Compile Include="Models\Entidades\Funcionario.cs" />
+    <Compile Include="Models\Entidades\Menu.cs" />
+    <Compile Include="Models\Entidades\Setor.cs" />
+    <Compile Include="Models\Enums\EFormaEntrega.cs" />
+    <Compile Include="Models\Enums\ECategoria.cs" />
+    <Compile Include="Models\Maps\AutorizacaoMap.cs" />
+    <Compile Include="Models\Maps\FuncionarioMap.cs" />
+    <Compile Include="Models\Maps\MenuMap.cs" />
+    <Compile Include="Models\Maps\SetorMap.cs" />
     <Compile Include="Models\SessionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -215,7 +204,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ContaBancaria\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

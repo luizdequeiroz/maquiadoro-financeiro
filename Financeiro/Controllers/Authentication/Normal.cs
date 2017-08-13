@@ -1,4 +1,4 @@
-﻿using Financeiro.Models.Enums;
+﻿/*using Financeiro.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,4 +23,4 @@ namespace Financeiro.Controllers.Authentication
             return true;
         }
     }
-}
+}*/

@@ -20,7 +20,7 @@ namespace Financeiro.Models
                 return session;
 
             IPersistenceConfigurer configDb = MsSqlConfiguration.MsSql7.ConnectionString(ConnectionString);
-            var configMap = Fluently.Configure().Database(configDb).Mappings(c => c.FluentMappings.AddFromAssemblyOf<Maps.UsuarioMap>());
+            var configMap = Fluently.Configure().Database(configDb).Mappings(c => c.FluentMappings.AddFromAssemblyOf<Maps.FuncionarioMap>());
             session = configMap.BuildSessionFactory();
 
             return session;

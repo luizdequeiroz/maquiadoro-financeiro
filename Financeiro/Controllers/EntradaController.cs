@@ -1,5 +1,5 @@
 ﻿using Financeiro.Controllers.Authentication;
-using Financeiro.Models.DAOs;
+using Financeiro.Models.Dao;
 using Financeiro.Models.Entidades;
 using System;
 using System.Collections.Generic;
@@ -16,30 +16,28 @@ namespace Financeiro.Controllers
         {
             ViewBag.ScriptSession = AuthenticationSession.ScriptSession;
             AuthenticationSession.ScriptSession = "";
-            if (Session["id"] == null)
+            if (Session["Funcionario"] == null)
                 return View();
             else return RedirectToAction("Painel", "Desktop");
         }
 
         [HttpPost]
-        public ActionResult Entrar(Usuario u)
+        public ActionResult Entrar(Funcionario f)
         {
             var Validade = 0;
-            Validade += (string.IsNullOrEmpty(u.EmailEntrada)) ? 1 : 0;
-            Validade += (string.IsNullOrEmpty(u.Senha)) ? 2 : 0;
+            Validade += (string.IsNullOrEmpty(f.Usuario)) ? 1 : 0;
+            Validade += (string.IsNullOrEmpty(f.Senha)) ? 2 : 0;
 
             if (Validade == 0)
             {
                 try
                 {
-                    var us = new UsuarioDao().SelecionarPorEmail(u.EmailEntrada);
-                    if (us != null)
-                        if (u.Senha == us.Senha)
+                    var fu = f.SelecionarPorUsuario();
+                    if (fu != null)
+                        if (f.Senha == fu.Senha)
                         {
-                            AuthenticationSession.IdNameKey = "id";
-                            Session["id"] = us.Id;
-                            Session["nivel"] = us.Nivel;
-                            Session["nome"] = us.Nome;
+                            AuthenticationSession.IdNameKey = "Funcionario";
+                            Session["Funcionario"] = fu;
                             return RedirectToAction("Painel", "Desktop");
                         }
                         else
@@ -57,12 +55,12 @@ namespace Financeiro.Controllers
                 }
             }
             else if (Validade < 2)
-                ModelState.AddModelError("EmailEntrada", "Informe seu apelido de acesso!");
+                ModelState.AddModelError("Usuario", "Informe seu usuário de acesso!");
             else if (Validade < 3)
                 ModelState.AddModelError("Senha", "Informe sua senha de acesso!");
             else
             {
-                ModelState.AddModelError("EmailEntrada", "Informe seu apelido de acesso!");
+                ModelState.AddModelError("Usuario", "Informe seu usuário de acesso!");
                 ModelState.AddModelError("Senha", "Informe sua senha de acesso!");
             }
             return View();

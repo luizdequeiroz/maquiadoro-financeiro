@@ -1,5 +1,5 @@
 ﻿using Financeiro.Controllers.Authentication;
-using Financeiro.Models.DAOs;
+using Financeiro.Models.Dao;
 using Financeiro.Models.Entidades;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,8 @@ namespace Financeiro.Controllers
     {
         public ActionResult Painel()
         {
-            return View();
+            var autorizacoes = ((Funcionario)Session["Funcionario"]).Setor.Autorizacoes;
+            return View(autorizacoes);
         }
 
         public ActionResult Inicio()

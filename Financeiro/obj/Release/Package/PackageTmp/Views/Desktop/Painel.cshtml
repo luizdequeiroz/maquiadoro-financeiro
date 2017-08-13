@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Início";
+}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="col-md-11"></div>
+    <div class="text-right col-md-1 padding-10">
+        @Html.ActionLink("Sair", "Sair", null, new { @class = "btn btn-danger btn-xs" })
+    </div>
+</nav>
+<div class="col-md-12 col-sm-12 background-white no-padding-horizontal">
+    <div id="backmenu"></div>
+    <div class="col-md-2 col-sm-2 no-padding-horizontal">
+        <!-- required for floating -->
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs tabs-left background-whitesmoke no-padding-horizontal" id="tabmenu">
+            <li class="active"><a href="#inicio" data-controller="Desktop" id="Inicio" target="principal" data-toggle="tab" onclick="abrir(this.id)">INÍCIO</a></li>
+            <li><a href="#plano" data-controller="PlanoContas" id="PlanoContas" data-toggle="tab" onclick="abrir(this.id)">PLANO DE CONTAS</a></li>
+            @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
+            {
+                <li class="submenu"><a href="#inclusao" data-controller="PlanoContas" id="Inclusao" data-toggle="tab" onclick="abrir(this.id)">Inclusão</a></li>
+            }
+            <li class="submenu"><a href="#consulta" data-controller="PlanoContas" id="Consulta" data-toggle="tab" onclick="abrir(this.id)">Consulta</a></li>
+            @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
+            {
+                <li class="submenu"><a href="#alteracao" data-controller="PlanoContas" id="BaixaAlteracao" data-toggle="tab" onclick="abrir(this.id)">Baixa/Alteração</a></li>
+            }
+            <li><a href="#cadastros" data-controller="Cadastros" id="Cadastros" data-toggle="tab" onclick="abrir(this.id)">CADASTROS</a></li>
+            <li class="submenu"><a href="#funcionario" data-controller="Cadastros" id="Funcionarios" data-toggle="tab" onclick="abrir(this.id)">Funcionários</a></li>
+            <li class="submenu"><a href="#fornecedor" data-controller="Cadastros" id="Fornecedores" data-toggle="tab" onclick="abrir(this.id)">Fornecedores</a></li>
+            <li class="submenu"><a href="#terceiro" data-controller="Cadastros" id="Terceiros" data-toggle="tab" onclick="abrir(this.id)">Terceiros</a></li>
+            @if ((int)Session["nivel"] == (int)Financeiro.Models.Enums.ENivel.Administrativo)
+            {
+                <li><a href="#administrativo" data-controller="Administrativo" id="Administrativo" data-toggle="tab" onclick="abrir(this.id)">ADMINISTRATIVO</a></li>
+                <li class="submenu"><a href="#usuarios" data-controller="Administrativo" id="Usuarios" data-toggle="tab" onclick="abrir(this.id)">Usuários</a></li>
+                <li class="submenu"><a href="#categorias" data-controller="Administrativo" id="Categorias" data-toggle="tab" onclick="abrir(this.id)">Categorias</a></li>
+            }
+        </ul>
+    </div>
+
+    <div class="col-xs-9">
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Actions -->
+            <fieldset class="tab-pane active" id="inicio"><legend></legend></fieldset>
+            <fieldset class="tab-pane" id="plano"><legend>PLANO DE CONTAS</legend></fieldset>
+            <fieldset class="tab-pane" id="inclusao"><legend></legend></fieldset>
+            <fieldset class="tab-pane" id="consulta"><legend></legend></fieldset>
+            <fieldset class="tab-pane" id="alteracao"><legend></legend></fieldset>
+            <fieldset class="tab-pane" id="cadastros"><legend>CADASTROS</legend></fieldset>
+            <fieldset class="tab-pane" id="funcionario"><legend></legend></fieldset>
+            <fieldset class="tab-pane" id="fornecedor"><legend></legend></fieldset>
+            <fieldset class="tab-pane" id="terceiro"><legend></legend></fieldset>
+            @if ((int)Session["nivel"] == (int)Financeiro.Models.Enums.ENivel.Administrativo)
+            {
+                <fieldset class="tab-pane" id="administrativo"><legend>ADMINITRATIVO</legend></fieldset>
+                <fieldset class="tab-pane" id="usuarios"><legend></legend></fieldset>
+                <fieldset class="tab-pane" id="categorias"><legend></legend></fieldset>
+            }
+            <iframe src="~/Desktop/Inicio" id="principal" name="principal" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model Financeiro.Models.Entidades.Destinatario
+@{
+    ViewBag.Title = "Alterar Terceiro";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<fieldset>
+    <legend>Alteração de Terceiro</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="ETipoPessoa" class="control-label">Tipo de Pessoa</label>
+                @Html.EnumDropDownListFor(u => u.ETipoPessoa, "Selecione o tipo de pessoa", new { @class = "form-control", onchange = new HtmlString("$('#formulario').load('/Cadastros/FormTerceiro/?id=" + Model.Id+ "&eTipoPessoa=' + this.value)") })
+            </div>
+        </div>
+        <hr />
+        <div class="loading text-center" style="display: none">
+            <img src="~/Content/Imgs/loading.gif" width="40" /> Carregando...
+        </div>
+        <div id="formulario">
+            @Html.Action("FormTerceiro", new { id = Model.Id, eTipoPessoa = Model.ETipoPessoa })
+        </div>
+    }
+</fieldset>
+

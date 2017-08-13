@@ -1,5 +1,4 @@
-﻿using Financeiro.Controllers.Authentication;
-using Financeiro.Models.DAOs;
+﻿/*using Financeiro.Controllers.Authentication;
 using Financeiro.Models.Entidades;
 using Financeiro.Models.Enums;
 using System;
@@ -56,9 +55,9 @@ namespace Financeiro.Controllers
         public ActionResult VerDestinatario(int id)
         {
             var tipo = new DestinatarioDao().SelecionarPorId(id).ETipo;
-            if (tipo == ETipo.Fornecedor) return RedirectToAction("VerFornecedor", new { id = id });
-            else if (tipo == ETipo.Funcionario) return RedirectToAction("VerFuncionario", new { id = id });
+            if (tipo == ECategoria.Fornecedor) return RedirectToAction("VerFornecedor", new { id = id });
+            else if (tipo == ECategoria.Funcionario) return RedirectToAction("VerFuncionario", new { id = id });
             else return RedirectToAction("VerTerceiro", new { id = id });
         }
     }
-}
+}*/

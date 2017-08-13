@@ -1,0 +1,24 @@
+﻿@model Financeiro.Models.Entidades.Destinatario
+@{
+    ViewBag.Title = "Novo Terceiro";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<fieldset>
+    <legend>Novo Terceiro</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="ETipoPessoa" class="control-label">Tipo de Pessoa</label>
+                @Html.EnumDropDownListFor(u => u.ETipoPessoa, "Selecione o tipo de pessoa", new { @class = "form-control", onchange = new HtmlString("$('#formulario').load('/Cadastros/FormTerceiro/?eTipoPessoa=' + this.value)") })
+            </div>
+        </div>
+        <hr />
+        <div class="loading text-center" style="display: none">
+            <img src="~/Content/Imgs/loading.gif" width="40" /> Carregando...
+        </div>
+        <div id="formulario"></div>
+    }
+</fieldset>
