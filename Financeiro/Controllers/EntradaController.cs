@@ -1,4 +1,4 @@
-﻿using Financeiro.Controllers.Authentication;
+﻿using Financeiro.Controllers.Auth;
 using Financeiro.Models.Dao;
 using Financeiro.Models.Entidades;
 using System;

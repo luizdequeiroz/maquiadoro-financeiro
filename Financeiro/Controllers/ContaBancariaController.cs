@@ -1,4 +1,5 @@
-﻿/*using Financeiro.Controllers.Authentication;
+﻿using Financeiro.Controllers.Auth;
+using Financeiro.Models.Dao;
 using Financeiro.Models.Entidades;
 using Financeiro.Models.Enums;
 using System;
@@ -12,29 +13,26 @@ namespace Financeiro.Controllers
     [AuthenticationSession]
     public partial class CadastrosController : Controller
     {
-        public ActionResult ContasBancarias(int destinatarioId)
+        public ActionResult ContasBancarias(int favorecidoId, int categoria)
         {
-            var destinatario = new DestinatarioDao().SelecionarPorId(destinatarioId);
-            ViewBag.DestinatarioNome = destinatario.Apelido;
-            ViewBag.DestinatarioId = destinatario.Id;
-            var contas = new ContaBancoDao().SelecionarPorDestinatarioId(destinatarioId);
-            return View(contas);
+            var contasBancarias = new List<ContaBancaria>().SelecionarPorFavorecidoId(favorecidoId, (ECategoria)categoria);
+            return View(contasBancarias);
         }
-        [Normal]
-        public ActionResult NovaContaBancaria(int destinatarioId)
-        {            
-            ViewBag.DestinatarioId = destinatarioId;
+        [Authorization("Administrativo")]
+        public ActionResult NovaContaBancaria(int favorecidoId)
+        {
+            ViewBag.FavorecidoId = favorecidoId;
             return View();
         }
         [HttpPost]
-        public ActionResult NovaContaBancaria(ContaBanco cb)
+        public ActionResult NovaContaBancaria(ContaBancaria cb)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    new ContaBancoDao().Inserir(cb);
-                    return RedirectToAction("VerDestinatario", new { id = cb.DestinatarioId });
+                    cb.Inserir();
+                    return RedirectToAction("VerFavorecido", new { id = cb.FavorecidoId, categoria = cb.CategoriaFavorecido });
                 }
                 catch (Exception e)
                 {
@@ -44,20 +42,23 @@ namespace Financeiro.Controllers
             }
             return View();
         }
-        [Normal]
+        [Authorization("Administrativo")]
         public ActionResult ExcluirContaBancaria(int id)
         {
-            var cb = new ContaBancoDao().SelecionarPorId(id);
-            var destinatarioId = cb.DestinatarioId;
-            new ContaBancoDao().Excluir(cb);
-            return RedirectToAction("VerDestinatario", new { id = destinatarioId });
+            var cb = new ContaBancaria().SelecionarPorId(id);
+            var favorecidoId = cb.FavorecidoId;
+            var categoriaFavorecido = cb.CategoriaFavorecido;
+            cb.Excluir();
+            return RedirectToAction("VerFavorecido", new { id = favorecidoId, categoria = categoriaFavorecido });
         }
-        public ActionResult VerDestinatario(int id)
+        public ActionResult VerFavorecido(int id, int categoria)
         {
-            var tipo = new DestinatarioDao().SelecionarPorId(id).ETipo;
-            if (tipo == ECategoria.Fornecedor) return RedirectToAction("VerFornecedor", new { id = id });
-            else if (tipo == ECategoria.Funcionario) return RedirectToAction("VerFuncionario", new { id = id });
-            else return RedirectToAction("VerTerceiro", new { id = id });
+            if ((ECategoria)categoria == ECategoria.Fornecedor)
+                return RedirectToAction("VerFornecedor", new { id = id });
+            else if ((ECategoria)categoria == ECategoria.Funcionario)
+                return RedirectToAction("VerFuncionario", new { id = id });
+            else
+                return RedirectToAction("VerTerceiro", new { id = id });
         }
     }
-}*/
+}

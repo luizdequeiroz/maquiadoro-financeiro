@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Financeiro.Controllers.Authentication
+namespace Financeiro.Controllers.Auth
 {
     public class AuthenticationSession : AuthorizeAttribute
     {
