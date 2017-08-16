@@ -1,27 +1,39 @@
-﻿@model List<Financeiro.Models.Entidades.Categoria>
+﻿@using Financeiro.Models.Enums
+@model List<Financeiro.Models.Entidades.TipoDespesa>
 @{
-    ViewBag.Title = "Lista de Categorias";
+    ViewBag.Title = "Lista de Tipos de Despesas";
     Layout = "~/Views/Shared/_PartialLayout.cshtml";
 }
 
 <fieldset>
-    <legend>Categorias</legend>
+    <legend>Tipos de Despesas</legend>
     <form name="frm" id="frm" method="post" action="" role="form" target="principal">
         <input type="hidden" name="Id" id="Id" />
         <input type="hidden" name="Nome" id="Nome" />
         <input type="hidden" name="Descricao" id="Descricao" />
+        <input type="hidden" name="Categoria" id="Categoria" />
         @Html.Raw(ViewBag.ModelError)
         @{ ViewBag.ModelError = ""; }
         <div class="table-responsive">
             <table class="table table-striped">
                 <tbody>
                     <tr>
-                        <td colspan="3" class="form-inline" align="right">
-                            <label for="NewCategoria">Nova Categoria: </label>
-                            <input type="text" name="NewNome" id="NewNome" placeholder="nome da categoria" class="form-control valid" data-val="true" data-val-required="Digite o nome!" />
+                        <td><label for="NewNome">Novo Tipo de Despesa: </label></td>
+                        <td>
+                            <input type="text" name="NewNome" id="NewNome" placeholder="nome do tipo de despesa" class="form-control valid" data-val="true" data-val-required="Digite o nome!" />
                             <span class="field-validation-valid" data-valmsg-for="NewNome" data-valmsg-replace="true"></span>
-                            <input type="text" name="NewDescricao" id="NewDescricao" placeholder="descrição da categoria" class="form-control valid" data-val="true" data-val-required="Digite uma descrição!" />
+                        </td>
+                        <td>
+                            <input type="text" name="NewDescricao" id="NewDescricao" placeholder="descrição do tipo de despesa" class="form-control valid" data-val="true" data-val-required="Digite uma descrição!" />
                             <span class="field-validation-valid" data-valmsg-for="NewDescricao" data-valmsg-replace="true"></span>
+                        </td>
+                        <td>
+                            <select name="NewCategoria" id="NewCategoria" class="form-control valid" data-val="true" data-val-required="Selecione a Categoria!">
+                                <option value="1">Fornecedor</option>
+                                <option value="2">Funcionário</option>
+                                <option value="3">Terceiro</option>
+                            </select>
+                            <span class="field-validation-valid" data-valmsg-for="NewCategoria" data-valmsg-replace="true"></span>
                         </td>
                         <td colspan="2" align="right">
                             <input type="button" class="btn btn-primary btn-sm" onclick="cadastrar()" value="Cadastrar" />
@@ -37,6 +49,7 @@
                             <td><strong>ID</strong></td>
                             <td><strong>NOME</strong></td>
                             <td><strong>DESCRIÇÃO</strong></td>
+                            <td><strong>CATEGORIA</strong></td>
                             <td align="right"><strong>AÇÕES</strong></td>
                         </tr>
                     </thead>
@@ -49,6 +62,14 @@
                                 <td id="e1_@c.Id" style="display: none"><input type="text" name="AltNome_@c.Id" id="AltNome_@c.Id" value="@c.Nome" class="valid" data-val="true" data-val-required="" /></td>
                                 <td id="v2_@c.Id">@c.Descricao</td>
                                 <td id="e2_@c.Id" style="display: none"><input type="text" name="AltDescricao_@c.Id" id="AltDescricao_@c.Id" value="@c.Descricao" class="valid" data-val="true" data-val-required="" /></td>
+                                <td id="v3_@c.Id">@((ECategoria)c.Categoria)</td>
+                                <td id="e3_@c.Id" style="display: none">
+                                    <select name="AltCategoria_@c.Id" id="AltCategoria_@c.Id" class="form-control valid" data-val="true" data-val-required="">
+                                        <option value="1" @((c.Categoria == 1) ? "selected" : "")>Fornecedor</option>
+                                        <option value="2" @((c.Categoria == 2) ? "selected" : "")>Funcionário</option>
+                                        <option value="3" @((c.Categoria == 3) ? "selected" : "")>Terceiro</option>
+                                    </select>
+                                </td>
                                 <td align="right" id="vb_@c.Id">
                                     <div class="btn-group">
                                         <input type="button" class="btn btn-default btn-xs" onclick="alterar(@c.Id)" value="Alterar" />
@@ -58,14 +79,14 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header text-left">
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">Excluir Categoria?</h4>
+                                                        <h4 class="modal-title">Excluir Tipo de Despesa?</h4>
                                                     </div>
                                                     <div class="modal-body text-center">
-                                                        <label class="control-label">Tem certeza de que deseja excluir a categoria?!</label>
+                                                        <label class="control-label">Tem certeza de que deseja excluir o tipo de despesa?!</label>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <input type="reset" class="btn btn-danger" value="Não" data-dismiss="modal" />
-                                                        <a class="btn btn-success" href="~/Administrativo/ExcluirCategoria/@c.Id">Sim</a>
+                                                        <a class="btn btn-success" href="~/Cadastros/ExcluirTipoDespesa/@c.Id">Sim</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,7 +107,7 @@
                 {
                     <thead class="table-bordered">
                         <tr>
-                            <td colspan="4"><strong>Não há categorias registradas!</strong></td>
+                            <td colspan="4"><strong>Não há tipos de despesas registrados!</strong></td>
                         </tr>
                     </thead>
                 }

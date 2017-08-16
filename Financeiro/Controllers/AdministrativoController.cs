@@ -80,63 +80,6 @@ namespace Financeiro.Controllers
             var u = new UsuarioDao().SelecionarPorId(id);
             new UsuarioDao().Excluir(u);
             return RedirectToAction("Usuarios");
-        }
-
-        // Categoria
-        [Administrativo]
-        public ActionResult Categorias(string filtro = "")
-        {
-            List<Categoria> categorias = new List<Categoria>();
-
-            if (filtro == "")
-                categorias = new CategoriaDao().Selecionar();
-            else categorias = new CategoriaDao().SelecionarPorFiltro(filtro);
-
-            return View(categorias);
-        }
-        [HttpPost]
-        public ActionResult CadastrarCategoria(string Nome, string Descricao)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var c = new Categoria { Nome = Nome, Descricao = Descricao };
-                    new CategoriaDao().Inserir(c);
-                    return RedirectToAction("Categorias");
-                }
-                catch (Exception e)
-                {
-                    ModelState.AddModelError("NewDescricao", "OPS! Erro inesperado. Entre em contato com o suporte! Erro: " + e.Message);
-                    return View();
-                }
-            }
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AlterarCategoria(Categoria c)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    new CategoriaDao().Alterar(c);
-                    return RedirectToAction("Categorias");
-                }
-                catch (Exception e)
-                {
-                    ViewBag.ModelError = "<div class='validation-summary-errors'><ul><li>OPS! Erro inesperado. Entre em contato com o suporte! Erro: " + e.Message + "</li></ul></div>";
-                    return View();
-                }
-            }
-            return View();
-        }
-        [Administrativo]
-        public ActionResult ExcluirCategoria(int id)
-        {
-            var c = new CategoriaDao().SelecionarPorId(id);
-            new CategoriaDao().Excluir(c);
-            return RedirectToAction("Categorias");
-        }
+        }        
     }
 }*/

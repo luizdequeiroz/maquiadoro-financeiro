@@ -7,8 +7,8 @@ namespace Financeiro.Models.Enums
 {
     public enum ECategoria
     {
-        Funcionario = 1,
-        Fornecedor = 2,
+        Fornecedor = 1,
+        Funcionario = 2,
         Terceiro = 3
     }
 }

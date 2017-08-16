@@ -141,6 +141,7 @@
     <Compile Include="Controllers\ContaBancariaController.cs" />
     <Compile Include="Controllers\DesktopController.cs" />
     <Compile Include="Controllers\EntradaController.cs" />
+    <Compile Include="Controllers\TipoDespesaController.cs" />
     <Compile Include="Controllers\UteisController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -155,6 +156,7 @@
     <Compile Include="Models\Entidades\Menu.cs" />
     <Compile Include="Models\Entidades\Setor.cs" />
     <Compile Include="Models\Entidades\Terceiro.cs" />
+    <Compile Include="Models\Entidades\TipoDespesa.cs" />
     <Compile Include="Models\Enums\EFormaEntrega.cs" />
     <Compile Include="Models\Enums\ECategoria.cs" />
     <Compile Include="Models\Maps\AutorizacaoMap.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="Models\Maps\FuncionarioMap.cs" />
     <Compile Include="Models\Maps\MenuMap.cs" />
     <Compile Include="Models\Maps\SetorMap.cs" />
+    <Compile Include="Models\Maps\TipoDespesaMap.cs" />
     <Compile Include="Models\SessionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -182,7 +185,7 @@
     <Content Include="Views\Administrativo\NovoUsuario.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Administrativo\AlterarUsuario.cshtml" />
-    <Content Include="Views\Administrativo\Categorias.cshtml" />
+    <Content Include="Views\Cadastros\TiposDespesas.cshtml" />
     <Content Include="Views\Cadastros\Funcionarios.cshtml" />
     <Content Include="Views\Entrada\Entrar.cshtml" />
     <Content Include="Views\Shared\_NeutralLayout.cshtml" />
@@ -210,6 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\TipoDespesa\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
