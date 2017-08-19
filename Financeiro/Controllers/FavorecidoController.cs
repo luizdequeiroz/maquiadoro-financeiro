@@ -19,7 +19,7 @@ namespace Financeiro.Controllers
             var fornecedores = new List<Fornecedor>().Selecionar();
             return View(fornecedores);
         }
-        [Authorization("Administrativo", "Compras")]
+        [Authorizations("Administrativo", "Compras")]
         public ActionResult NovoFornecedor()
         {
             return View();
@@ -48,7 +48,7 @@ namespace Financeiro.Controllers
             var fornecedor = new Fornecedor().SelecionarPorId(id);
             return View(fornecedor);
         }
-        [Authorization("Administrativo")]
+        [Authorizations("Administrativo")]
         public ActionResult AlterarFornecedor(int id)
         {
             var fornecedor = new Fornecedor().SelecionarPorId(id);
@@ -74,7 +74,7 @@ namespace Financeiro.Controllers
             }
             return View();
         }
-        [Authorization("Administrativo")]
+        [Authorizations("Administrativo")]
         public ActionResult ExcluirFornecedor(int id)
         {
             var f = new Fornecedor().SelecionarPorId(id);
@@ -88,7 +88,7 @@ namespace Financeiro.Controllers
             var funcionarios = new List<Funcionario>().Selecionar();            
             return View(funcionarios);
         }
-        [Authorization("Administrativo", "Financeiro")]
+        [Authorizations("Administrativo", "Financeiro")]
         public ActionResult NovoFuncionario()
         {
             return View();
@@ -117,7 +117,7 @@ namespace Financeiro.Controllers
             var funcionario = new Funcionario().SelecionarPorId(id);
             return View(funcionario);
         }
-        [Authorization("Administrativo")]
+        [Authorizations("Administrativo")]
         public ActionResult AlterarFuncionario(int id)
         {
             var funcionario = new Funcionario().SelecionarPorId(id);
@@ -143,7 +143,7 @@ namespace Financeiro.Controllers
             }
             return View();
         }
-        [Authorization("Administrativo")]
+        [Authorizations("Administrativo")]
         public ActionResult ExcluirFuncionario(int id)
         {
             var f = new Funcionario().SelecionarPorId(id);
@@ -157,7 +157,7 @@ namespace Financeiro.Controllers
             var terceiros = new List<Terceiro>().Selecionar();
             return View(terceiros);
         }
-        [Authorization("Administrativo","Financeiro")]
+        [Authorizations("Administrativo","Financeiro")]
         public ActionResult NovoTerceiro()
         {
             return View();
@@ -186,7 +186,7 @@ namespace Financeiro.Controllers
             var terceiro = new Terceiro().SelecionarPorId(id);
             return View(terceiro);
         }
-        [Authorization("Administrativo")]
+        [Authorizations("Administrativo")]
         public ActionResult AlterarTerceiro(int id)
         {
             var terceiro = new Terceiro().SelecionarPorId(id);
@@ -212,7 +212,7 @@ namespace Financeiro.Controllers
             }
             return View();
         }        
-        [Authorization("Administrativo")]
+        [Authorizations("Administrativo")]
         public ActionResult ExcluirTerceiro(int id)
         {
             var t = new Terceiro().SelecionarPorId(id);

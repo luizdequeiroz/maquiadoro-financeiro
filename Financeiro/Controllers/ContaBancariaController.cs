@@ -18,10 +18,11 @@ namespace Financeiro.Controllers
             var contasBancarias = new List<ContaBancaria>().SelecionarPorFavorecidoId(favorecidoId, (ECategoria)categoria);
             return View(contasBancarias);
         }
-        [Authorization("Administrativo")]
-        public ActionResult NovaContaBancaria(int favorecidoId)
+        [Authorizations("Administrativo")]
+        public ActionResult NovaContaBancaria(int favorecidoId, int categoria)
         {
             ViewBag.FavorecidoId = favorecidoId;
+            ViewBag.CategoriaFavorecido = categoria;
             return View();
         }
         [HttpPost]
@@ -42,7 +43,7 @@ namespace Financeiro.Controllers
             }
             return View();
         }
-        [Authorization("Administrativo")]
+        [Authorizations("Administrativo")]
         public ActionResult ExcluirContaBancaria(int id)
         {
             var cb = new ContaBancaria().SelecionarPorId(id);

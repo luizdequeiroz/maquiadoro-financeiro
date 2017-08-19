@@ -12,12 +12,10 @@ namespace Financeiro.Models.Maps
         public FornecedorMap()
         {
             Id(f => f.Id);
-            Map(f => f.Id);
             Map(f => f.EhTransportador);
             Map(f => f.NomeFantasia);
             Map(f => f.RazaoSocial);
             Map(f => f.CNPJ);
-            Map(f => f.DataCadastro);
             Map(f => f.Email);
             Map(f => f.Fone1);
             Map(f => f.Fone2);
@@ -28,6 +26,7 @@ namespace Financeiro.Models.Maps
             Map(f => f.Bairro);
             Map(f => f.Municipio);
             Map(f => f.Estado);
+            Map(f => f.DataCadastro);
             Table("Fornecedor");
         }
     }

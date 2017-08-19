@@ -15,27 +15,7 @@ namespace Financeiro.Models.Dao
             SessionFactory.CriarSession();
             using (var session = SessionFactory.AbrirSession())
             {
-                if (categoria == ECategoria.Fornecedor)
-                {
-                    var fornecedor = new Fornecedor();
-                    return session.QueryOver<ContaBancaria>()
-                        .Left.JoinAlias(c => c.Fornecedor, () => fornecedor)
-                        .Where(c => c.FavorecidoId == favorecidoId).List().ToList();
-                }
-                else if (categoria == ECategoria.Funcionario)
-                {
-                    var funcionaro = new Funcionario();
-                    return session.QueryOver<ContaBancaria>()
-                        .Left.JoinAlias(c => c.Funcionario, () => funcionaro)
-                        .Where(c => c.FavorecidoId == favorecidoId).List().ToList();
-                }
-                else
-                {
-                    var terceiro = new Terceiro();
-                    return session.QueryOver<ContaBancaria>()
-                        .Left.JoinAlias(c => c.Terceiro, () => terceiro)
-                        .Where(c => c.FavorecidoId == favorecidoId).List().ToList();
-                }
+                return session.Query<ContaBancaria>().Where(cb => cb.CategoriaFavorecido == (int)categoria && cb.FavorecidoId == favorecidoId).ToList();
             }
         }
     }

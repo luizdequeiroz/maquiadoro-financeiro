@@ -12,7 +12,7 @@ namespace Financeiro.Controllers
     public partial class CadastrosController : Controller
     {
         // TipoDespesa
-        [Authorization("Administrativo")]
+        [Authorizations("Administrativo")]
         public ActionResult TiposDespesas()
         {
             var tiposDespesas = new List<TipoDespesa>().Selecionar();
@@ -55,7 +55,7 @@ namespace Financeiro.Controllers
             }
             return View();
         }
-        [Authorization("Administrativo")]
+        [Authorizations("Administrativo")]
         public ActionResult ExcluirTipoDespesa(int id)
         {
             var c = new TipoDespesa().SelecionarPorId(id);

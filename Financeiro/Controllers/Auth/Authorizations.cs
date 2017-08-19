@@ -7,10 +7,10 @@ using System.Web.Mvc;
 
 namespace Financeiro.Controllers.Auth
 {
-    public class Authorization : AuthorizeAttribute
+    public class Authorizations : AuthorizeAttribute
     {
         private readonly string[] allowedroles;
-        public Authorization(params string[] roles)
+        public Authorizations(params string[] roles)
         {
             this.allowedroles = roles;
         }
@@ -19,7 +19,7 @@ namespace Financeiro.Controllers.Auth
         {
             if (AuthenticationSession.IsSessionAtiva(httpContext.Session))
             {
-                bool authorize = false;
+                var authorize = false;
                 var setor = ((Funcionario)httpContext.Session["Funcionario"]).Setor;
                 foreach (var r in allowedroles)
                     if (r == setor.Nome) authorize = true;
@@ -37,6 +37,17 @@ namespace Financeiro.Controllers.Auth
             //filterContext.Result = new HttpUnauthorizedResult();
             filterContext.Result = new ViewResult { ViewName = "Unauthorized" };
             filterContext.HttpContext.Response.StatusCode = 403;
+        }
+
+        public static bool Is(params string[] roles)
+        {
+            var authorize = false;
+            var httpContext = AuthenticationSession.httpContext;
+            var setor = ((Funcionario)httpContext.Session["Funcionario"]).Setor;
+            foreach (var r in roles)
+                if (r == setor.Nome) authorize = true;
+
+            return authorize;
         }
     }
 }

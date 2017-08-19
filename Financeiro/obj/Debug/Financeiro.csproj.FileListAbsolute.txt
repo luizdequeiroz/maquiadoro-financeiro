@@ -129,6 +129,6 @@ C:\Users\luizd\Dropbox\MaquiADORO\Financeiro\Financeiro\bin\pt-br\System.Web.Web
 C:\Users\luizd\Dropbox\MaquiADORO\Financeiro\Financeiro\bin\pt-br\System.Web.Webpages.Razor.resources.dll
 C:\Users\luizd\Dropbox\MaquiADORO\Financeiro\Financeiro\bin\pt-br\System.Web.Helpers.resources.dll
 C:\Users\luizd\Dropbox\MaquiADORO\Financeiro\Financeiro\bin\pt-br\System.Web.Mvc.resources.dll
+C:\Users\luizd\Dropbox\MaquiADORO\Financeiro\Financeiro\obj\Debug\Financeiro.csprojResolveAssemblyReference.cache
 C:\Users\luizd\Dropbox\MaquiADORO\Financeiro\Financeiro\obj\Debug\Financeiro.dll
 C:\Users\luizd\Dropbox\MaquiADORO\Financeiro\Financeiro\obj\Debug\Financeiro.pdb
-C:\Users\luizd\Dropbox\MaquiADORO\Financeiro\Financeiro\obj\Debug\Financeiro.csprojResolveAssemblyReference.cache

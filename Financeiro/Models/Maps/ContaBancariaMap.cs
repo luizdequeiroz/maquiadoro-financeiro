@@ -12,7 +12,6 @@ namespace Financeiro.Models.Maps
         public ContaBancariaMap()
         {
             Id(c => c.Id);
-            Map(c => c.Id);
             Map(c => c.NomeTitular);
             Map(c => c.NomeBanco);
             Map(c => c.Agencia);

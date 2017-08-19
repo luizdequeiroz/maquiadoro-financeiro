@@ -46,6 +46,10 @@ textarea {
     max-width: 280px;
 }
 
+textarea {
+    max-height: 60px;
+}
+
 .submenu {
     left: 11%;
     width: 90%;
