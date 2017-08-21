@@ -1,4 +1,7 @@
-﻿@model Financeiro.Models.Entidades.Destinatario
+﻿@using Financeiro.Controllers.Auth
+@using Financeiro.Models.Entidades
+@using Financeiro.Models.Dao
+@model Financeiro.Models.Entidades.Funcionario
 @{
     ViewBag.Title = "Novo Funcionário";
     Layout = "~/Views/Shared/_PartialLayout.cshtml";
@@ -9,36 +12,123 @@
     @using (Html.BeginForm())
     {
         @Html.ValidationSummary(true)
-        <div class="col-md-6">
+        <div class="col-md-3">
             <div class="form-group">
-                <label for="Nome" class="control-label">Nome</label> @Html.ValidationMessageFor(f => f.Nome)
-                @Html.TextBoxFor(f => f.Nome, new { @class = "form-control" })
+                <label for="NomeCompleto" class="control-label">Nome Completo</label> @Html.ValidationMessageFor(f => f.NomeCompleto)
+                @Html.TextBoxFor(f => f.NomeCompleto, new { @class = "form-control" })
             </div>
+        </div>
+        <div class="col-md-2">
             <div class="form-group">
-                <label for="Apelido" class="control-label">Apelido</label> @Html.ValidationMessageFor(f => f.Apelido)
-                @Html.TextBoxFor(f => f.Apelido, new { @class = "form-control" })
+                <label for="DataNascimento" class="control-label">Data de Nascimento</label> @Html.ValidationMessageFor(f => f.DataNascimento)
+                @Html.TextBoxFor(f => f.DataNascimento, new { @class = "form-control" })
             </div>
+        </div>
+        <div class="col-md-3">
             <div class="form-group">
-                <label for="CPF" class="control-label">CPF</label> @Html.ValidationMessageFor(f => f.CPF)
-                @Html.TextBoxFor(f => f.CPF, new { @class = "form-control" })
+                <label for="Email" class="control-label">E-mail</label>
+                @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
             </div>
+        </div>
+        <div class="col-md-2">
             <div class="form-group">
-                <label for="Descricao" class="control-label">Descrição</label> @Html.ValidationMessageFor(f => f.Descricao)
+                <label for="Fone1" class="control-label">Fone 1</label> @Html.ValidationMessageFor(f => f.Fone1)
+                @Html.TextBoxFor(f => f.Fone1, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="Fone2" class="control-label">Fone 2</label>
+                @Html.TextBoxFor(f => f.Fone2, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="Usuario" class="control-label">Usuário</label> @Html.ValidationMessageFor(f => f.Usuario)
+                @Html.TextBoxFor(f => f.Usuario, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="Senha" class="control-label">Senha</label> @Html.ValidationMessageFor(f => f.Senha)
+                @Html.TextBoxFor(f => f.Senha, new { @class = "form-control", type = "password" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label for="RepSenha" class="control-label">Repetir Senha</label> @Html.ValidationMessageFor(f => f.RepSenha)
+                @Html.TextBoxFor(f => f.RepSenha, new { @class = "form-control", type = "password" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Descricao" class="control-label">Descrição</label>
                 @Html.TextAreaFor(f => f.Descricao, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-3">
             <div class="form-group">
-                <label for="Email" class="control-label">E-mail</label> @Html.ValidationMessageFor(f => f.Email)
-                @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
+                <label for="SetorId" class="control-label">Setor</label> @Html.ValidationMessageFor(f => f.SetorId)
+                <select name="SetorId" id="SetorId" class="form-control">
+                    @{ var setores = new List<Setor>().Selecionar(); }
+                    @foreach(var s in setores)
+                    {
+                        <option value="@s.Id" title="@s.Descricao">@s.Nome</option>
+                    }
+                    @{ setores = null; }
+                </select>  
             </div>
-            <div class="form-group">
-                <label for="Telefone" class="control-label">Telefone</label> | <input type="checkbox" id="check" @ViewBag.Checked /> Não tem! @Html.ValidationMessageFor(f => f.Telefone)
-                @Html.TextBoxFor(f => f.Telefone, new { @class = "form-control" })
+        </div>
+        if (Authorizations.Is("Administrativo"))
+        {
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="DataCadastro" class="control-label">Data de Cadastro</label>
+                    @Html.TextBoxFor(f => f.DataCadastro, new { @class = "form-control" })
+                </div>
             </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="DataAdmissao" class="control-label">Data de Admissaão</label>
+                    @Html.TextBoxFor(f => f.DataAdmissao, new { @class = "form-control" })
+                </div>
+            </div>
+        }
+        <hr class="col-md-12" />
+        <div class="col-md-3">
             <div class="form-group">
-                <label for="CelularFuncionario" class="control-label">Celular</label> @Html.ValidationMessageFor(f => f.CelularFuncionario)
-                @Html.TextBoxFor(f => f.CelularFuncionario, new { @class = "form-control" })
+                <label for="Logradouro" class="control-label">Logradouro</label>
+                @Html.TextBoxFor(f => f.Logradouro, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-1">
+            <div class="form-group">
+                <label for="Numero" class="control-label">Nº</label>
+                @Html.TextBoxFor(f => f.Numero, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="Complemento" class="control-label">Complemento</label>
+                @Html.TextBoxFor(f => f.Complemento, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="Bairro" class="control-label">Bairro</label>
+                @Html.TextBoxFor(f => f.Bairro, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="Municipio" class="control-label">Município</label>
+                @Html.TextBoxFor(f => f.Municipio, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="Estado" class="control-label">Estado (ou UF)</label>
+                @Html.TextBoxFor(f => f.Estado, new { @class = "form-control" })
             </div>
         </div>
         <hr class="col-md-12" />
@@ -49,19 +139,21 @@
 </fieldset>
 <script>
     $(document).ready(function () {
-        $("#CPF").mask("999.999.999-99");
-        $("#Telefone").mask("(99) 9999-9999");
-        $("#CelularFuncionario").mask("(99) 99999-9999");
-
-        $("#check").click(function () {
-            if ($(this).is(':checked')) {
-                $("#Telefone").val("0000000000");
-                $("#Telefone").attr("readonly", "readonly");
-            }
-            else {
-                $("#Telefone").val("");
-                $("#Telefone").removeAttr("readonly");
-            }
-        });
+        $("#DataNascimento").mask("99/99/9999");
+        $("#Fone1").mask("(99) 99999-9999");
+        $("#Fone2").mask("(99) 99999-9999");
     });
 </script>
+@if (Authorizations.Is("Administrativo"))
+{
+    <script>
+        $(document).ready(function () {
+            $("#DataCadastro").mask("99/99/9999");
+            $("#DataAdmissao").mask("99/99/9999");
+            var date = new Date();
+            var mm = (date.getMonth() + 1).toString();
+            mm = mm[1] ? mm : "0" + mm[0];
+            $("#DataCadastro").val(date.getDate() + "/" + mm + "/" + date.getFullYear());
+        });
+    </script>
+}

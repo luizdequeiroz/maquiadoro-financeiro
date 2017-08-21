@@ -59,15 +59,15 @@
                 @Html.TextAreaFor(f => f.Descricao, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-2">
-            @if (Authorizations.Is("Administrativo"))
-            {
+        if (Authorizations.Is("Administrativo"))
+        {
+            <div class="col-md-2">
                 <div class="form-group">
                     <label for="DataCadastro" class="control-label">Data de Cadastro</label>
                     @Html.TextBoxFor(f => f.DataCadastro, new { @class = "form-control" })
                 </div>
-            }
-        </div>
+            </div>
+        }
         <hr class="col-md-12" />
         <div class="col-md-3">
             <div class="form-group">

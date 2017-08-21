@@ -14,21 +14,21 @@ namespace Financeiro.Models.Maps
             Id(f => f.Id);
             Map(f => f.NomeCompleto);
             Map(f => f.DataNascimento);
+            Map(f => f.Email);
             Map(f => f.Fone1);
             Map(f => f.Fone2);
-            Map(f => f.DataCadastro);
-            Map(f => f.DataAdmissao);
-            Map(f => f.Email);
             Map(f => f.Descricao);
             Map(f => f.Usuario);
             Map(f => f.Senha);
+            Map(f => f.SetorId);
+            Map(f => f.DataCadastro);
+            Map(f => f.DataAdmissao);
             Map(f => f.Logradouro);
             Map(f => f.Numero);
             Map(f => f.Complemento);
             Map(f => f.Bairro);
             Map(f => f.Municipio);
             Map(f => f.Estado);
-            Map(f => f.SetorId);
             Table("Funcionario");
         }
     }
