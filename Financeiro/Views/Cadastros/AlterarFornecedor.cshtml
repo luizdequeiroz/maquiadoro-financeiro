@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label for="NomeFantasia" class="control-label">Nome Fantasia</label> @Html.ValidationMessageFor(f => f.NomeFantasia)
+                <label for="NomeFantasia" class="control-label">Nome Fantasia <span class="text-danger">*</span></label> @Html.ValidationMessageFor(f => f.NomeFantasia)
                 @Html.TextBoxFor(f => f.NomeFantasia, new { @class = "form-control" })
             </div>
         </div>

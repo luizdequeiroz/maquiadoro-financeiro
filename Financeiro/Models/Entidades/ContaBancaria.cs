@@ -2,6 +2,7 @@
 using Financeiro.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,9 +12,14 @@ namespace Financeiro.Models.Entidades
     {
         public virtual int Id { get; set; }
         public virtual string NomeTitular { get; set; }
+
+        [Required(ErrorMessage = "Informe o nome do banco!")]
         public virtual string NomeBanco { get; set; }
+        [Required(ErrorMessage = "Informe a agência!")]
         public virtual string Agencia { get; set; }
+        [Required(ErrorMessage = "Informe a conta!")]
         public virtual string Conta { get; set; }
+
         public virtual string Op { get; set; }
         public virtual int CategoriaFavorecido { get; set; }
         public virtual int FavorecidoId { get; set; }

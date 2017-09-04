@@ -12,7 +12,7 @@ namespace Financeiro.Models.Entidades
     {
         public virtual int Id { get; set; }
 
-        [Required(ErrorMessage = "Informe o nome completo!")]
+        [Required(ErrorMessage = "Informe o nome!")]
         public virtual string NomeCompleto { get; set; }
         [Required(ErrorMessage = "Informe a data de nascimento!")]
         public virtual string DataNascimento { get; set; }

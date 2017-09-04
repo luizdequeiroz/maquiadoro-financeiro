@@ -1,86 +1,220 @@
-﻿@model Financeiro.Models.Entidades.Destinatario
+﻿@using Financeiro.Controllers.Auth
+@using Financeiro.Models.Enums
+@model Financeiro.Models.Entidades.Funcionario
 @{
     ViewBag.Title = "Ficha de Funcionário";
     Layout = "~/Views/Shared/_PartialLayout.cshtml";
 }
 
 <fieldset>
-    <legend>Ficha do Funcionário - @Model.Apelido</legend>
+    <legend>Ficha do Funcionário - @Model.NomeCompleto</legend>
     <div class="col-md-8">
-        <table class="table">
-            <tr>
-                <td align="right"><strong>Apelido: </strong></td>
-                <td align="left">
-                    @Html.ValueFor(f => f.Apelido)
-                </td>
-                <td align="right"><strong>Nome: </strong></td>
-                <td align="left">
-                    @Html.ValueFor(f => f.Nome)
-                </td>
-                <td align="right"><strong>CPF: </strong></td>
-                <td align="left">
-                    @Html.ValueFor(f => f.CPF)
-                </td>
-            </tr>
-            <tr>
-                <td align="right"><strong>Descrição: </strong></td>
-                <td align="left" colspan="5">
-                    @Html.ValueFor(f => f.Descricao)
-                </td>
-            </tr>
-            <tr>
-                <td align="right"><strong>Data de Cadastro: </strong></td>
-                <td align="left" colspan="2">
-                    @Html.ValueFor(f => f.DataCadastro)
-                </td>
-                <td align="right"><strong>E-mail: </strong></td>
-                <td align="left" colspan="2">
-                    @Html.ValueFor(f => f.Email)
-                </td>
-            </tr>
-            <tr>
-                @if (Model.Telefone != "0000000000")
-                {
-                    <td align="right"><strong>Telefone: </strong></td>
-                    <td align="left">
-                        @Html.ValueFor(f => f.Telefone)
-                    </td>
-                }
-                <td align="right"><strong>Celular: </strong></td>
-                <td align="left">
-                    @Html.ValueFor(f => f.CelularFuncionario)
-                </td>
-            </tr>
-            <tr>
-                @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
-                {
-                    <td align="right" colspan="3"><a href="~/Cadastros/AlterarFuncionario/@Model.Id" class="btn btn-default">Alterar</a></td>
-                    <td colspan="3">
-                        <a class="btn btn-danger" data-toggle="modal" data-backdrop="false" data-target="#excluir_@Model.Id">Excluir</a>
-                        <div class="modal fade" id="excluir_@Model.Id" role="dialog" data-class="modal-draggable">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header text-left">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Excluir funcionário @Model.Apelido?</h4>
-                                    </div>
-                                    <div class="modal-body text-center">
-                                        <label class="control-label">Tem certeza de que deseja excluir o funcionário?!</label>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <input type="reset" class="btn btn-danger" value="Não" data-dismiss="modal" />
-                                        <a class="btn btn-success" href="~/Cadastros/ExcluirFuncionario/@Model.Id">Sim</a>
-                                    </div>
-                                </div>
+        <div class="col-md-7">
+            <div class="form-group">
+                <label for="NomeCompleto" class="control-label">Nome Completo: </label>
+                @Model.NomeCompleto
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="DataNascimento" class="control-label">Data de Nascimento: </label>
+                @(string.IsNullOrEmpty(Model.DataNascimento) ? "[Não informado]" : Model.DataNascimento.Substring(0, 10))
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Email" class="control-label">E-mail: </label>
+                @(string.IsNullOrEmpty(Model.Email) ? "[Não informado]" : Model.Email)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Fone1" class="control-label">Fone 1: </label>
+                @Model.Fone1
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Fone2" class="control-label">Fone 2: </label>
+                @(string.IsNullOrEmpty(Model.Fone2) ? "[Não informado]" : Model.Fone2)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Usuario" class="control-label">Usuário: </label>
+                @Model.Usuario
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="Descricao" class="control-label">Descrição: </label>
+                @(string.IsNullOrEmpty(Model.Descricao) ? "[Não informado]" : Model.Descricao)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="SetorId" class="control-label">Setor: </label>
+                @Model.Setor.Nome
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" title="@Model.DataCadastro">
+                <label for="DataCadastro" class="control-label">Data de Cadastro: </label>
+                @(string.IsNullOrEmpty(Model.DataCadastro) ? "[Não informado]" : Model.DataCadastro.Substring(0, 10))
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group" title="@Model.DataAdmissao">
+                <label for="DataAdmissao" class="control-label">Data de Admissaão: </label>
+                @(string.IsNullOrEmpty(Model.DataAdmissao) ? "[Não informado]" : Model.DataAdmissao.Substring(0, 10))
+            </div>
+        </div>
+        <hr class="col-md-12" />
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="Logradouro" class="control-label">Logradouro: </label>
+                @(string.IsNullOrEmpty(Model.Logradouro) ? "[Não informado]" : Model.Logradouro)
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="Numero" class="control-label">Nº: </label>
+                @(string.IsNullOrEmpty(Model.Numero) ? "[Não informado]" : Model.Numero)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Complemento" class="control-label">Complemento: </label>
+                @(string.IsNullOrEmpty(Model.Complemento) ? "[Não informado]" : Model.Complemento)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Bairro" class="control-label">Bairro: </label>
+                @(string.IsNullOrEmpty(Model.Bairro) ? "[Não informado]" : Model.Bairro)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Municipio" class="control-label">Município: </label>
+                @(string.IsNullOrEmpty(Model.Municipio) ? "[Não informado]" : Model.Municipio)
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="Estado" class="control-label">Estado (ou UF): </label>
+                @(string.IsNullOrEmpty(Model.Estado) ? "[Não informado]" : Model.Estado)
+            </div>
+        </div>
+        <div class="col-md-12 text-center">
+            @if (Authorizations.Is("Administrativo"))
+            {
+                <a href="~/Cadastros/AlterarFuncionario/@Model.Id" class="btn btn-default">Alterar</a>
+                <a class="btn btn-danger" data-toggle="modal" data-backdrop="false" data-target="#excluir_@Model.Id">Excluir</a>
+                <div class="modal fade" id="excluir_@Model.Id" role="dialog" data-class="modal-draggable">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header text-left">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Excluir funcionário @Model.NomeCompleto?</h4>
+                            </div>
+                            <div class="modal-body text-center">
+                                <label class="control-label">Tem certeza de que deseja excluir o funcionário?!</label>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="reset" class="btn btn-danger" value="Não" data-dismiss="modal" />
+                                <a class="btn btn-success" href="~/Cadastros/ExcluirFuncionario/@Model.Id">Sim</a>
                             </div>
                         </div>
-                    </td>
-                }
-            </tr>
-        </table>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
     <div class="col-md-4">
-        @Html.Action("ContasBancarias", new { destinatarioId = Model.Id })
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="table-bordered">
+                    <tr>
+                        @{ var contasBancarias = Model.ContasBancarias; }
+                        @if (contasBancarias.Count > 0)
+                        {
+                            <td><strong>BANCO</strong></td>
+                            <td><strong>AGÊNCIA</strong></td>
+                            <td><strong>CONTA</strong></td>
+                        }
+                        <td align="right" @((contasBancarias.Count == 0) ? "colspan=4" : "")>
+                            @if (Authorizations.Is("Administrativo", "Financeiro"))
+                            {
+                                <a data-toggle="modal" data-backdrop="false" data-target="#novaconta" class="btn btn-primary btn-xs">NOVA</a>
+                            }
+                        </td>
+                    </tr>
+                </thead>
+                @if (contasBancarias.Count > 0)
+                {
+                    <tbody>
+                        @foreach (var cb in contasBancarias)
+                        {
+                            <tr>
+                                <td>@cb.NomeBanco</td>
+                                <td scope="row">@cb.Agencia</td>
+                                <td scope="row">@cb.Conta</td>
+                                <td align="right">
+                                    @{ var excluir = ""; }
+                                    @if (Authorizations.Is("Administrativo"))
+                                    {
+                                        excluir = "<a class='btn btn-danger btn-xs btn-block' data-toggle='modal' data-backdrop='false' data-target='#excluir_" + cb.Id + "'>Excluir</a>";
+                                        <div class="modal fade" id="excluir_@cb.Id" role="dialog" data-class="modal-draggable">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header text-left">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Excluir Conta Bancária de @Model.NomeCompleto?</h4>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        <label class="control-label">Tem certeza de que deseja excluir a conta bancária desta pessoa?!</label>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <input type="reset" class="btn btn-danger" value="Não" data-dismiss="modal" />
+                                                        <a class="btn btn-success" href="/Cadastros/ExcluirContaBancaria/@cb.Id">Sim</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <a class="btn btn-primary btn-xs" data-toggle="popover" data-placement="left" title="@cb.NomeTitular" data-content="<b>Banco:</b> @cb.NomeBanco<br/><b>Agência:</b> @cb.Agencia<br/><b>Conta:</b> @cb.Conta<br/><b>Op:</b> @cb.Op<br/>@excluir" data-html="true">Ver</a>
+                                </td>
+                            </tr>
+                                        }
+                    </tbody>
+                                        }
+                                        else
+                                        {
+                                            <thead class="table-bordered">
+                                                <tr>
+                                                    <td colspan="4"><strong>Não há contas bancárias!</strong></td>
+                                                </tr>
+                                            </thead>
+                                        }
+            </table>
+        </div>
+        @if (Authorizations.Is("Administrativo", "Financeiro"))
+        {
+            <div class="modal fade" id="novaconta" role="dialog" data-class="modal-draggable">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Nova Conta Bancária p/ @Model.NomeCompleto</h4>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Action("NovaContaBancaria", new { favorecidoId = Model.Id, categoria = (int)ECategoria.Funcionario })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </fieldset>
 

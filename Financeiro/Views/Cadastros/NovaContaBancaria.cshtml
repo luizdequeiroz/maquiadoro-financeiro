@@ -10,25 +10,25 @@
     <input type="hidden" name="CategoriaFavorecido" id="CategoriaFavorecido" value="@ViewBag.CategoriaFavorecido" />
     <div class="col-xs-6">
         <div class="form-group">
-            <label for="NomeTitular" class="control-label">Nome do Titular</label> @Html.ValidationMessageFor(cb => cb.NomeTitular)
+            <label for="NomeTitular" class="control-label">Nome do Titular</label>
             @Html.TextBoxFor(cb => cb.NomeTitular, new { @class = "form-control" })
         </div>
         <div class="form-group">
-            <label for="NomeBanco" class="control-label">Banco</label> @Html.ValidationMessageFor(cb => cb.NomeBanco)
+            <label for="NomeBanco" class="control-label">Banco <span class="text-danger">*</span></label> @Html.ValidationMessageFor(cb => cb.NomeBanco)
             @Html.TextBoxFor(cb => cb.NomeBanco, new { @class = "form-control" })
         </div>
     </div>
     <div class="col-xs-6">
         <div class="form-group">
-            <label for="Agencia" class="control-label">Agência</label> @Html.ValidationMessageFor(cb => cb.Agencia)
+            <label for="Agencia" class="control-label">Agência <span class="text-danger">*</span></label> @Html.ValidationMessageFor(cb => cb.Agencia)
             @Html.TextBoxFor(cb => cb.Agencia, new { @class = "form-control" })
         </div>
         <div class="form-group">
-            <label for="Conta" class="control-label">Conta</label> @Html.ValidationMessageFor(cb => cb.Conta)
+            <label for="Conta" class="control-label">Conta <span class="text-danger">*</span></label> @Html.ValidationMessageFor(cb => cb.Conta)
             @Html.TextBoxFor(cb => cb.Conta, new { @class = "form-control" })
         </div>
         <div class="form-group">
-            <label for="Op" class="control-label">Op</label> @Html.ValidationMessageFor(cb => cb.Op)
+            <label for="Op" class="control-label">Op</label>
             @Html.TextBoxFor(cb => cb.Op, new { @class = "form-control" })
         </div>
     </div>

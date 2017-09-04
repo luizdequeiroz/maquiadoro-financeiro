@@ -25,9 +25,11 @@
             {
             <thead class="table-bordered">
                 <tr>
-                    <td><strong>ID</strong></td>
-                    <td><strong>Nome Completo</strong></td>
-                    <td><strong>Usuário</strong></td>
+                    <!--<td><strong>ID</strong></td>-->
+                    <td><strong>NOME COMPLETO</strong></td>
+                    <td><strong>SETOR</strong></td>
+                    <td><strong>USUÁRIO</strong></td>
+                    <td><strong>FONE</strong></td>
                     <td><strong>DATA DE CADASTRO</strong></td>
                     <td align="right"><strong>AÇÕES</strong></td>
                 </tr>
@@ -36,10 +38,12 @@
                 @foreach (var f in Model)
                 {
                     <tr>
-                        <th scope="row">@f.Id</th>
+                        <!--<th scope="row">@f.Id</th>-->
                         <td>@f.NomeCompleto</td>
+                        <td>@f.Setor.Nome</td>
                         <td>@f.Usuario</td>
-                        <td>@f.DataCadastro</td>
+                        <td>@f.Fone1</td>
+                        <td>@(f.DataCadastro?.Substring(0, 10))</td>
 
                         <td align="right">
                             <div class="btn-group">
@@ -76,7 +80,7 @@
             {
                 <thead class="table-bordered">
                     <tr>
-                        <td colspan="5"><strong>Não há funcionários registrados!</strong></td>
+                        <td><strong>Não há funcionários registrados!</strong></td>
                     </tr>
                 </thead>
             }

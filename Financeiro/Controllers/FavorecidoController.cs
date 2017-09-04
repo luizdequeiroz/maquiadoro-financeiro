@@ -61,8 +61,8 @@ namespace Financeiro.Controllers
             {
                 try
                 {
-                    var fo = new Fornecedor().SelecionarPorId(f.Id);
-                    f.DataCadastro = fo.DataCadastro;
+                    //var fo = new Fornecedor().SelecionarPorId(f.Id);
+                    //f.DataCadastro = fo.DataCadastro;
                     f.Alterar();
                     return RedirectToAction("Fornecedores");
                 }
@@ -130,8 +130,8 @@ namespace Financeiro.Controllers
             {
                 try
                 {
-                    var fu = new Funcionario().SelecionarPorId(f.Id);
-                    f.DataCadastro = fu.DataCadastro;                    
+                    //var fu = new Funcionario().SelecionarPorId(f.Id);
+                    //f.DataCadastro = fu.DataCadastro;                    
                     f.Alterar();
                     return RedirectToAction("Funcionarios");
                 }

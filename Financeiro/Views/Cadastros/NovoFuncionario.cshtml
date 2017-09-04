@@ -11,16 +11,16 @@
     <legend>Novo Funcionário</legend>
     @using (Html.BeginForm())
     {
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary("Preencha os campos obrigatórios (*)!")
         <div class="col-md-3">
             <div class="form-group">
-                <label for="NomeCompleto" class="control-label">Nome Completo</label> @Html.ValidationMessageFor(f => f.NomeCompleto)
+                <label for="NomeCompleto" class="control-label">Nome Completo <span class="text-danger">*</span></label> @Html.ValidationMessageFor(f => f.NomeCompleto)
                 @Html.TextBoxFor(f => f.NomeCompleto, new { @class = "form-control" })
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <label for="DataNascimento" class="control-label">Data de Nascimento</label> @Html.ValidationMessageFor(f => f.DataNascimento)
+                <label for="DataNascimento" class="control-label">Data de Nascimento <span class="text-danger">*</span></label>
                 @Html.TextBoxFor(f => f.DataNascimento, new { @class = "form-control" })
             </div>
         </div>
@@ -32,7 +32,7 @@
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <label for="Fone1" class="control-label">Fone 1</label> @Html.ValidationMessageFor(f => f.Fone1)
+                <label for="Fone1" class="control-label">Fone 1 <span class="text-danger">*</span></label>
                 @Html.TextBoxFor(f => f.Fone1, new { @class = "form-control" })
             </div>
         </div>
@@ -44,19 +44,19 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="Usuario" class="control-label">Usuário</label> @Html.ValidationMessageFor(f => f.Usuario)
+                <label for="Usuario" class="control-label">Usuário <span class="text-danger">*</span></label> @Html.ValidationMessageFor(f => f.Usuario)
                 @Html.TextBoxFor(f => f.Usuario, new { @class = "form-control" })
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <label for="Senha" class="control-label">Senha</label> @Html.ValidationMessageFor(f => f.Senha)
+                <label for="Senha" class="control-label">Senha <span class="text-danger">*</span></label>
                 @Html.TextBoxFor(f => f.Senha, new { @class = "form-control", type = "password" })
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <label for="RepSenha" class="control-label">Repetir Senha</label> @Html.ValidationMessageFor(f => f.RepSenha)
+                <label for="RepSenha" class="control-label">Repetir Senha <span class="text-danger">*</span></label>
                 @Html.TextBoxFor(f => f.RepSenha, new { @class = "form-control", type = "password" })
             </div>
         </div>
@@ -68,8 +68,9 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="SetorId" class="control-label">Setor</label> @Html.ValidationMessageFor(f => f.SetorId)
-                <select name="SetorId" id="SetorId" class="form-control">
+                <label for="SetorId" class="control-label">Setor <span class="text-danger">*</span></label> @Html.ValidationMessageFor(f => f.SetorId)
+                <select name="SetorId" id="SetorId" class="form-control" data-val="true" data-val-required="Informe o setor!">
+                    <option value="">Selecione</option>
                     @{ var setores = new List<Setor>().Selecionar(); }
                     @foreach(var s in setores)
                     {
@@ -133,7 +134,7 @@
         </div>
         <hr class="col-md-12" />
         <div class="col-md-12 form-group text-center">
-            <input type="submit" class="btn btn-primary" value="Cadastrar" />
+            <input type="submit" class="btn btn-primary" value="Cadastrar" onclick="$('ul').css('display','none')" />
         </div>
     }
 </fieldset>

@@ -9,13 +9,13 @@
 <fieldset>
     <legend>Ficha @((Model.EhTransportador == 1) ? "da Transportadora" : "do Fornecedor") - @Model.NomeFantasia</legend>
     <div class="col-md-8">
-        <div class="col-md-4">
+        <div class="col-md-7">
             <div class="form-group">
                 <label for="RazaoSocial" class="control-label">Razão Social: </label>
                 @(string.IsNullOrEmpty(Model.RazaoSocial) ? "[Não informado]" : Model.RazaoSocial)
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="form-group">
                 <label for="NomeFantasia" class="control-label">Nome Fantasia: </label>
                 @Model.NomeFantasia
