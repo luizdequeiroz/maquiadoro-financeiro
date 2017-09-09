@@ -14,10 +14,10 @@
     <script src="~/Scripts/scripts.js"></script>
 </head>
 <body>
-    <div>
+    <div class="body-content">
         @RenderBody()
-        <!--<hr />
-        <footer>
+        <hr />
+        <!--<footer>
             <a class="btn btn-success btn-xs">Voltar</a>
         </footer>-->
     </div>
@@ -29,16 +29,9 @@
     <script>
         $(document).ready(function () {
             $('[data-toggle="popover"]').popover();
-            //$('[data-class="modal-draggable"]').draggable({
-            //    handle: ".modal-header"
-            //});
-            //$(document).ajaxStart(function () {
-            //    $(".loading").removeAttr('style');
-            //});
-
-            //$(document).ajaxComplete(function () {
-            //    $(".loading").css('display', 'none');
-            //});
+            $('[data-class="modal-draggable"]').draggable({
+                handle: ".modal-header"
+            });
         });
     </script>
     @RenderSection("scripts", required: false)

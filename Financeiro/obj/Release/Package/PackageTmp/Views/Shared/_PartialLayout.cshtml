@@ -29,16 +29,9 @@
     <script>
         $(document).ready(function () {
             $('[data-toggle="popover"]').popover();
-            //$('[data-class="modal-draggable"]').draggable({
-            //    handle: ".modal-header"
-            //});
-            //$(document).ajaxStart(function () {
-            //    $(".loading").removeAttr('style');
-            //});
-
-            //$(document).ajaxComplete(function () {
-            //    $(".loading").css('display', 'none');
-            //});
+            $('[data-class="modal-draggable"]').draggable({
+                handle: ".modal-header"
+            });
         });
     </script>
     @RenderSection("scripts", required: false)

@@ -11,7 +11,8 @@ namespace Financeiro.Models
 {
     public class SessionFactory
     {
-        private static string ConnectionString = @"Data Source=DESKTOP-N6PQOIQ\LUIZDEQUEIROZ;Initial Catalog=Financeiro;Integrated Security=True";
+        private static string ConnectionStringLocal = @"Data Source=DESKTOP-N6PQOIQ\LUIZDEQUEIROZ;Initial Catalog=Financeiro;Integrated Security=True";
+        private static string ConnectionStringRemote = @"Server=tcp:maquiadoro.database.windows.net,1433;Initial Catalog=Financeiro;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         private static ISessionFactory session;
 
         public static ISessionFactory CriarSession()
@@ -19,7 +20,7 @@ namespace Financeiro.Models
             if (session != null)
                 return session;
 
-            IPersistenceConfigurer configDb = MsSqlConfiguration.MsSql7.ConnectionString(ConnectionString);
+            IPersistenceConfigurer configDb = MsSqlConfiguration.MsSql7.ConnectionString(ConnectionStringLocal);
             var configMap = Fluently.Configure().Database(configDb).Mappings(c => c.FluentMappings.AddFromAssemblyOf<Maps.FuncionarioMap>());
             session = configMap.BuildSessionFactory();
 

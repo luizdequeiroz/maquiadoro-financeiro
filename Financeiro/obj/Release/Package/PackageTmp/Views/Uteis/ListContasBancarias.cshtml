@@ -1,9 +1,0 @@
-﻿@model List<Financeiro.Models.Entidades.ContaBanco>
-@{
-    Layout = null;
-}
-<option value="">DINHEIRO EM ESPÉCIE</option>
-@foreach (var cb in Model)
-{
-    <option value="@cb.Id">@cb.NomeBanco | @cb.Agencia/@cb.Conta</option>
-}

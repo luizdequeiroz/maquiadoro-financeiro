@@ -1,4 +1,5 @@
-﻿@model List<Financeiro.Models.Entidades.Destinatario>
+﻿@using Financeiro.Controllers.Auth
+@model List<Financeiro.Models.Entidades.Terceiro>
 @{
     ViewBag.Title = "Lista de terceiros";
     Layout = "~/Views/Shared/_PartialLayout.cshtml";
@@ -7,7 +8,7 @@
 <fieldset>
     <legend>Lista de Terceiros</legend>
     <div class="table-responsive">
-        @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
+        @if (Authorizations.Is("Administrativo", "Financeiro"))
         {
             <table class="table table-striped">
                 <tbody>
@@ -22,56 +23,60 @@
         <table class="table table-striped">
             @if (Model.Count > 0)
             {
-            <thead class="table-bordered">
-                <tr>
-                    <td><strong>ID</strong></td>
-                    <td><strong>NOME</strong></td>
-                    <td><strong>DESCRIÇÃO</strong></td>
-                    <td><strong>TIPO DE PESSOA</strong></td>
-                    <td><strong>DATA DE CADASTRO</strong></td>
-                    <td align="right"><strong>AÇÕES</strong></td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var t in Model)
-                {
+                <thead class="table-bordered">
                     <tr>
-                        <th scope="row">@t.Id</th>
-                        <td>@t.Nome</td>
-                        <td>@t.Descricao</td>
-                        <td>@t.ETipoPessoa</td>
-                        <td>@t.DataCadastro</td>
+                        <!--<td><strong>ID</strong></td>-->
+                        <td><strong>NOME</strong></td>
+                        <td><strong>E-MAIL</strong></td>
+                        <td><strong>FONE</strong></td>
+                        <td><strong>TEMPO DE CONTRATO</strong></td>
+                        <td align="right"><strong>AÇÕES</strong></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var t in Model)
+                    {
+                        <tr>
+                            <!--<th scope="row">@t.Id</th>-->
+                            <td>@t.Nome</td>
+                            <td>@t.Email</td>
+                            <td>@t.Fone1</td>
+                            <td>@t.TempoContrato @((int.Parse(string.IsNullOrEmpty(t.TempoContrato) ? "0" : t.TempoContrato) == 1) ? " mês." : " meses.")</td>
 
-                        <td align="right">
-                            <div class="btn-group">
-                                <a href="~/Cadastros/VerTerceiro/@t.Id" target="principal" class="btn btn-success btn-xs">Ver</a>
-                                @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
-                                {
-                                    <a href="~/Cadastros/AlterarTerceiro/@t.Id" target="principal" class="btn btn-default btn-xs">Alterar</a>
-                                    <a class="btn btn-danger btn-xs" data-toggle="modal" data-backdrop="false" data-target="#excluir_@t.Id">Excluir</a>
-                                    <div class="modal fade" id="excluir_@t.Id" role="dialog" data-class="modal-draggable">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header text-left">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Excluir terceiro @t.ApelidoFantasia?</h4>
-                                                </div>
-                                                <div class="modal-body text-center">
-                                                    <label class="control-label">Tem certeza de que deseja excluir o terceiro?!</label>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <input type="reset" class="btn btn-danger" value="Não" data-dismiss="modal" />
-                                                    <a class="btn btn-success" href="~/Cadastros/ExcluirTerceiro/@t.Id">Sim</a>
+                            <td align="right">
+                                <div class="btn-group">
+                                    <a href="~/Cadastros/VerTerceiro/@t.Id" target="principal" class="btn btn-success btn-xs">Ver</a>
+                                    @if (Authorizations.Is("Administrativo", "Financeiro"))
+                                    {
+                                        <a href="~/Cadastros/AlterarTerceiro/@t.Id" target="principal" class="btn btn-default btn-xs">Alterar</a>
+                                        <a class="btn btn-danger btn-xs" data-toggle="modal" data-backdrop="false" data-target="#excluir_@t.Id">Excluir</a>
+                                        <div class="modal fade" id="excluir_@t.Id" role="dialog" data-class="modal-draggable">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header text-left">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Excluir terceiro @t.Nome?</h4>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        <label class="control-label">Tem certeza de que deseja excluir o terceiro?!</label>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <input type="reset" class="btn btn-danger" value="Não" data-dismiss="modal" />
+                                                        <a class="btn btn-success" href="~/Cadastros/ExcluirTerceiro/@t.Id">Sim</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                }
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="background-whitesmoke">
+                            <td><strong>DESCRIÇÃO: </strong></td>
+                            <td colspan="4">@t.Descricao</td>
+                        </tr>
+                    }
+                </tbody>
             }
             else
             {
@@ -82,7 +87,7 @@
                 </thead>
             }
         </table>
-        @if ((int)Session["nivel"] != (int)Financeiro.Models.Enums.ENivel.Consulta)
+        @if (Authorizations.Is("Administrativo", "Financeiro"))
         {
             <table class="table table-striped">
                 <tbody>
