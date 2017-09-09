@@ -207,7 +207,7 @@
     <Content Include="Views\Cadastros\AlterarTerceiro.cshtml" />
     <Content Include="Views\PlanoContas\PlanoContas.cshtml" />
     <Content Include="Views\Cadastros\Cadastros.cshtml" />
-    <Content Include="Views\PlanoContas\Inclusão.cshtml" />
+    <Content Include="Views\PlanoContas\Inclusao.cshtml" />
     <Content Include="Views\PlanoContas\Alteracao.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

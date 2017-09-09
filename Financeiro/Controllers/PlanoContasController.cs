@@ -16,7 +16,7 @@ namespace Financeiro.Controllers
             return View();
         }
 
-        public ActionResult Inclusão()
+        public ActionResult Inclusao()
         {
             return View();
         }
