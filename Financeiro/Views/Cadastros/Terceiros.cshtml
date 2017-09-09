@@ -41,12 +41,12 @@
                             <td>@t.Nome</td>
                             <td>@t.Email</td>
                             <td>@t.Fone1</td>
-                            <td>@t.TempoContrato @((t.TempoContrato == 1) ? " mês." : " meses.")</td>
+                            <td>@t.TempoContrato @((int.Parse(string.IsNullOrEmpty(t.TempoContrato) ? "0" : t.TempoContrato) == 1) ? " mês." : " meses.")</td>
 
                             <td align="right">
                                 <div class="btn-group">
                                     <a href="~/Cadastros/VerTerceiro/@t.Id" target="principal" class="btn btn-success btn-xs">Ver</a>
-                                    @if (Authorizations.Is("Adsministrativo", "Financeiro"))
+                                    @if (Authorizations.Is("Administrativo", "Financeiro"))
                                     {
                                         <a href="~/Cadastros/AlterarTerceiro/@t.Id" target="principal" class="btn btn-default btn-xs">Alterar</a>
                                         <a class="btn btn-danger btn-xs" data-toggle="modal" data-backdrop="false" data-target="#excluir_@t.Id">Excluir</a>
@@ -72,7 +72,8 @@
                             </td>
                         </tr>
                         <tr class="background-whitesmoke">
-                            <td><strong>DESCRIÇÃO: </strong></td><td colspan="4">@t.Descricao</td>
+                            <td><strong>DESCRIÇÃO: </strong></td>
+                            <td colspan="4">@t.Descricao</td>
                         </tr>
                     }
                 </tbody>

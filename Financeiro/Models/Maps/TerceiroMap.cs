@@ -11,15 +11,16 @@ namespace Financeiro.Models.Maps
     {
         public TerceiroMap()
         {
-            Id(f => f.Id);
-            Map(f => f.Nome);
-            Map(f => f.Email);
-            Map(f => f.Fone1);
-            Map(f => f.Fone2);
-            Map(f => f.Descricao);
-            Map(f => f.Vencimento);
-            Map(f => f.ValorMensal);
-            Map(f => f.TempoContrato);
+            Id(t => t.Id);
+            Map(t => t.Nome);
+            Map(t => t.Email);
+            Map(t => t.Fone1);
+            Map(t => t.Fone2);
+            Map(t => t.Descricao);
+            Map(t => t.Vencimento);
+            Map(t => t.ValorMensal);
+            Map(t => t.TempoContrato);
+            Map(t => t.DataCadastro);
             Table("Terceiro");
         }
     }
