@@ -1,0 +1,39 @@
+﻿@model Financeiro.Models.Entidades.ContaBancaria
+@{
+    ViewBag.Title = "Nova Conta Bancária";
+    Layout = "~/Views/Shared/_SubLayout.cshtml";
+}
+@using (Html.BeginForm("NovaContaBancaria", "Cadastros", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <input type="hidden" name="FavorecidoId" id="FavorecidoId" value="@ViewBag.FavorecidoId" />
+    <input type="hidden" name="CategoriaFavorecido" id="CategoriaFavorecido" value="@ViewBag.CategoriaFavorecido" />
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label for="NomeTitular" class="control-label">Nome do Titular</label>
+            @Html.TextBoxFor(cb => cb.NomeTitular, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="NomeBanco" class="control-label">Banco <span class="text-danger">*</span></label> @Html.ValidationMessageFor(cb => cb.NomeBanco)
+            @Html.TextBoxFor(cb => cb.NomeBanco, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label for="Agencia" class="control-label">Agência <span class="text-danger">*</span></label> @Html.ValidationMessageFor(cb => cb.Agencia)
+            @Html.TextBoxFor(cb => cb.Agencia, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="Conta" class="control-label">Conta <span class="text-danger">*</span></label> @Html.ValidationMessageFor(cb => cb.Conta)
+            @Html.TextBoxFor(cb => cb.Conta, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="Op" class="control-label">Op</label>
+            @Html.TextBoxFor(cb => cb.Op, new { @class = "form-control" })
+        </div>
+    </div>
+    <hr class="col-xs-12" />
+    <div class="col-xs-12 form-group text-center">
+        <input type="submit" class="btn btn-primary" value="Cadastrar" />
+    </div>
+}

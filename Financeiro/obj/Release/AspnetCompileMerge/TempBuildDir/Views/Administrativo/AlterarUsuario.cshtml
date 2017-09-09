@@ -1,0 +1,56 @@
+﻿@model Financeiro.Models.Entidades.Usuario
+@{
+    ViewBag.Title = "Alterar usuário";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<fieldset>
+    <legend>Alterar Usuário - @Model.Apelido</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="Nome" class="control-label">Nome</label> @Html.ValidationMessageFor(u => u.Nome)
+                @Html.TextBoxFor(u => u.Nome, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="ApelidoInalteravel" class="control-label">Apelido</label> @Html.ValidationMessageFor(u => u.Apelido)
+                @Html.TextBoxFor(u => u.Apelido, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="SenhaAlteracao" class="control-label">Senha</label> @Html.ValidationMessageFor(u => u.SenhaAlteracao)
+                @Html.TextBoxFor(u => u.SenhaAlteracao, new { @class = "form-control", type = "password" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="EmailAlteracao" class="control-label">E-mail</label> @Html.ValidationMessageFor(u => u.EmailAlteracao)
+                @Html.TextBoxFor(u => u.EmailAlteracao, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group">
+                <label for="Telefone" class="control-label">Telefone</label> @Html.ValidationMessageFor(u => u.Telefone)
+                @Html.TextBoxFor(u => u.Telefone, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="Celular" class="control-label">Celular</label> @Html.ValidationMessageFor(u => u.Celular)
+                @Html.TextBoxFor(u => u.Celular, new { @class = "form-control" })
+            </div>
+        </div>
+        <hr class="col-md-12" />
+        <div class="col-md-12 form-group">
+            <label for="Nivel" class="control-label">Nível de Acesso</label> @Html.ValidationMessageFor(u => u.Nivel)
+            @Html.EnumDropDownListFor(u => u.ENivel, "Selecione o Nível", new { @class = "form-control" })
+        </div>
+        <hr />
+        <div class="col-md-12 form-group text-center">
+            <input type="submit" class="btn btn-primary" value="Alterar" />
+        </div>
+    }
+</fieldset>
+<script>
+    $(document).ready(function () {
+        $("#Telefone").mask("(99) 9999-9999");
+        $("#Celular").mask("(99) 99999-9999");
+    });
+</script>

@@ -1,0 +1,27 @@
+﻿@model Financeiro.Models.Entidades.Funcionario
+@{
+    ViewBag.Title = "Entrada";
+    Layout = "~/Views/Shared/_NeutralLayout.cshtml";
+}
+@Html.Raw(ViewBag.ScriptSession)
+<div class="panel panel-default centered">
+    <fieldset>
+        <legend>Entrada</legend>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                <label for="EmailEntrada" class="control-label">E-Mail</label>
+                @Html.ValidationMessageFor(f => f.Usuario)
+                @Html.TextBoxFor(u => u.Usuario, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="Senha" class="control-label">Senha</label>
+                @Html.ValidationMessageFor(u => u.Senha)
+                @Html.TextBoxFor(u => u.Senha, new { type = "password", @class = "form-control" })
+            </div>
+            <hr />
+            <input type="submit" class="btn btn-success btn-block" value="Entrar" />
+        }
+    </fieldset>
+</div>
