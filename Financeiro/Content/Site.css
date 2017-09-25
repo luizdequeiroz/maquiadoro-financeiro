@@ -50,9 +50,23 @@ textarea {
     max-height: 60px;
 }
 
+.button {
+    font-weight: bold;
+    margin-bottom: -1px !important;
+    border-radius: 4px 0px 0px 4px;
+    cursor: default;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd !important;
+    border-right: none !important;
+}
+
 .submenu {
     left: 11%;
     width: 90%;
+    
+    border-bottom: -1px !important;
+    border-bottom-color: transparent !important;
 }
 
 #principal, #modal {

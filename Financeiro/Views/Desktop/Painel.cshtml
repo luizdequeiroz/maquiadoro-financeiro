@@ -15,7 +15,7 @@
             @foreach (var a in Model)
             {
                 var menu = a.Menu;
-                <li class="@menu.Class">
+                <li class="button @menu.Class">
                     <a href="#@menu.Href" data-controller="@menu.Controller" id="@menu.IdHtml" target="@menu.Target" data-toggle="tab" onclick="abrir(this.id)">
                         @Html.Raw(menu.Texto)
                     </a>

@@ -11,7 +11,7 @@ namespace Financeiro.Models.Entidades
     public class Fornecedor
     {
         public virtual int Id { get; set; }
-        public virtual int EhTransportador { get; set; }
+        public virtual ESimOuNao EhTransportador { get; set; }
 
         [Required(ErrorMessage = "Informe o nome fantasia!")]
         public virtual string NomeFantasia { get; set; }

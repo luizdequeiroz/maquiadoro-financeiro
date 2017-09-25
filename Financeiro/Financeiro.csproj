@@ -134,7 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdministrativoController.cs" />
     <Compile Include="Controllers\Auth\Authorizations.cs" />
     <Compile Include="Controllers\Auth\AuthenticationSession.cs" />
     <Compile Include="Controllers\CadastrosController.cs" />

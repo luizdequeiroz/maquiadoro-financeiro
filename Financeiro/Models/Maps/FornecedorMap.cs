@@ -12,7 +12,7 @@ namespace Financeiro.Models.Maps
         public FornecedorMap()
         {
             Id(f => f.Id);
-            Map(f => f.EhTransportador);
+            Map(f => (int)f.EhTransportador);
             Map(f => f.NomeFantasia);
             Map(f => f.RazaoSocial);
             Map(f => f.CNPJ);

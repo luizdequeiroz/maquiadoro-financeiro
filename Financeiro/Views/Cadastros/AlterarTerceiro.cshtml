@@ -10,31 +10,31 @@
     @using (Html.BeginForm())
     {
         @Html.ValidationSummary("Preencha os campos obrigatórios (*)!")
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="Nome" class="control-label">Nome <span class="text-danger">*</span></label> @Html.ValidationMessageFor(t => t.Nome)
                 @Html.TextBoxFor(t => t.Nome, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="Email" class="control-label">E-mail <span class="text-danger">*</span></label> @Html.ValidationMessageFor(t => t.Email)
                 @Html.TextBoxFor(t => t.Email, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-2">
             <div class="form-group">
                 <label for="Fone1" class="control-label">Fone 1 <span class="text-danger">*</span></label>
                 @Html.TextBoxFor(t => t.Fone1, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-2">
             <div class="form-group">
                 <label for="Fone2" class="control-label">Fone 2</label>
                 @Html.TextBoxFor(t => t.Fone2, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="Descricao" class="control-label">Descrição</label>
                 @Html.TextAreaFor(t => t.Descricao, new { @class = "form-control" })
@@ -42,42 +42,64 @@
         </div>
         if (Authorizations.Is("Administrativo"))
         {
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-2">
                 <div class="form-group">
                     <label for="DataCadastro" class="control-label">Data de Cadastro</label>
                     @Html.TextBoxFor(t => t.DataCadastro, new { @class = "form-control" })
                 </div>
             </div>
         }
-        <hr class="col-md-12" />
-        <div class="col-md-2">
+        <hr class="col-md-12 col-sm-12" />
+        <div class="col-md-2 col-sm-2">
             <div class="form-group">
                 <label for="Vencimento" class="control-label">Vencimento</label>
                 @Html.TextBoxFor(t => t.Vencimento, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-2">
             <div class="form-group">
                 <label for="ValorMensal" class="control-label">Valor Mensal</label>
                 @Html.TextBoxFor(t => t.ValorMensal, new { type = "number", min = "0,00", step = "0.01", placeholder = "0,00", @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-4">
             <div class="form-group">
                 <label for="TempoContrato" class="control-label">Tempo de Contrato (em meses)</label>
                 @Html.TextBoxFor(t => t.TempoContrato, new { type = "number", min = "0", placeholder = "0", @class = "form-control" })
             </div>
         </div>
-        <hr class="col-md-12" />
-        <div class="col-md-12 form-group text-center">
+        <hr class="col-md-12 col-sm-12" />
+        <div class="col-md-12 col-sm-12 form-group text-center">
             <input type="submit" class="btn btn-primary" value="Alterar" onclick="$('ul').css('display','none')" />
         </div>
     }
 </fieldset>
 <script>
     $(document).ready(function () {
-        $("#Fone1").mask("(99) 99999-9999");
-        $("#Fone2").mask("(99) 99999-9999");
+        $("#Fone1").mask("(99) 9999-9999?9").ready(function(event) {
+            var target, phone, element;
+            target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+            phone = target.value.replace('/\D/g', '');
+            element = $(target);
+            element.unmask();
+            if(phone.length > 10) {
+                element.mask("(99) 99999-9999");
+            } else {
+                element.mask("(99) 9999-9999?9");  
+            }
+        });
+        $("#Fone2").mask("(99) 9999-9999?9").ready(function(event) {
+            var target, phone, element;
+            target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+            phone = target.value.replace('/\D/g', '');
+            element = $(target);
+            element.unmask();
+            if(phone.length > 10) {
+                element.mask("(99) 99999-9999");
+            } else {
+                element.mask("(99) 9999-9999?9");  
+            }
+        });
         $("#Vencimento").mask("99/99/9999");
     });
 </script>
