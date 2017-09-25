@@ -11,7 +11,7 @@ namespace Financeiro.Models.Entidades
     public class Fornecedor
     {
         public virtual int Id { get; set; }
-        public virtual ESimOuNao EhTransportador { get; set; }
+        public virtual int EhTransportador { get; set; }
 
         [Required(ErrorMessage = "Informe o nome fantasia!")]
         public virtual string NomeFantasia { get; set; }
@@ -27,7 +27,18 @@ namespace Financeiro.Models.Entidades
         public virtual string Bairro { get; set; }
         public virtual string Municipio { get; set; }
         public virtual string Estado { get; set; }
-        public virtual string DataCadastro { get; set; }
+        public virtual string DataCadastro
+        {
+            get
+            {
+                return DataCadastroMap.ToString("dd/MM/yyyy");
+            }
+            set
+            {
+                DataCadastroMap = DateTime.Parse(value);
+            }
+        }
+        public virtual DateTime DataCadastroMap { get; set; }
 
         public virtual List<ContaBancaria> ContasBancarias
         {

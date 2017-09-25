@@ -15,7 +15,18 @@ namespace Financeiro.Models.Entidades
         [Required(ErrorMessage = "Informe o nome!")]
         public virtual string NomeCompleto { get; set; }
         [Required(ErrorMessage = "Informe a data de nascimento!")]
-        public virtual string DataNascimento { get; set; }
+        public virtual string DataNascimento
+        {
+            get
+            {
+                return DataNascimentoMap.ToString("dd/MM/yyyy");
+            }
+            set
+            {
+                DataNascimentoMap = DateTime.Parse(value);
+            }
+        }
+        public virtual DateTime DataNascimentoMap { get; set; }
 
         public virtual string Email { get; set; }
 
@@ -35,8 +46,30 @@ namespace Financeiro.Models.Entidades
         [Required(ErrorMessage = "Informe o setor!")]
         public virtual int SetorId { get; set; }
 
-        public virtual string DataCadastro { get; set; }
-        public virtual string DataAdmissao { get; set; }
+        public virtual string DataCadastro
+        {
+            get
+            {
+                return DataCadastroMap.ToString("dd/MM/yyyy");
+            }
+            set
+            {
+                DataCadastroMap = DateTime.Parse(value);
+            }
+        }
+        public virtual DateTime DataCadastroMap { get; set; }
+        public virtual string DataAdmissao
+        {
+            get
+            {
+                return DataAdmissaoMap.ToString("dd/MM/yyyy");
+            }
+            set
+            {
+                DataAdmissaoMap = DateTime.Parse(value);
+            }
+        }
+        public virtual DateTime DataAdmissaoMap { get; set; }
         public virtual string Logradouro { get; set; }
         public virtual string Numero { get; set; }
         public virtual string Complemento { get; set; }

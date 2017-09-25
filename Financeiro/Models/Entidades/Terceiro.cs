@@ -22,7 +22,18 @@ namespace Financeiro.Models.Entidades
         public virtual string Vencimento { get; set; }
         public virtual string ValorMensal { get; set; }
         public virtual string TempoContrato { get; set; }
-        public virtual string DataCadastro { get; set; }
+        public virtual string DataCadastro
+        {
+            get
+            {
+                return DataCadastroMap.ToString("dd/MM/yyyy");
+            }
+            set
+            {
+                DataCadastroMap = DateTime.Parse(value);
+            }
+        }
+        public virtual DateTime DataCadastroMap { get; set; }
 
         public virtual List<ContaBancaria> ContasBancarias
         {

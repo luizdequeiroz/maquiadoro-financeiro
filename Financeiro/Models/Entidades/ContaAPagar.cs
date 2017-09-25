@@ -12,8 +12,19 @@ namespace Financeiro.Models.Entidades
         #region Genérico
         public virtual int Id { get; set; }
 
-        public virtual string Vencimento { get; set; }
-        public virtual double ValoPrevisto { get; set; }
+        public virtual string Vencimento
+        {
+            get
+            {
+                return VencimentoMap.ToString("dd/MM/yyyy");
+            }
+            set
+            {
+                VencimentoMap = DateTime.Parse(value);
+            }
+        }
+        public virtual DateTime VencimentoMap { get; set; }
+        public virtual double ValorPrevisto { get; set; }
         public virtual string Descricao { get; set; }
         public virtual int TipoDespesaId { get; set; }
 
@@ -47,8 +58,8 @@ namespace Financeiro.Models.Entidades
             }
         }
 
-        public virtual ESimOuNao EhAVista { get; set; }
-        public virtual EFormaEntrega FormaDeEntrega { get; set; }
+        public virtual int EhAVista { get; set; }
+        public virtual int FormaDeEntrega { get; set; }
         public virtual int TransportadoraId { get; set; }
 
         public virtual Fornecedor Transportadora
@@ -101,6 +112,81 @@ namespace Financeiro.Models.Entidades
             {
                 CategoriaFavorecido = (int)ECategoria.Terceiro;
                 FavorecidoId = value.Id;
+            }
+        }
+        #endregion
+
+        #region Auditoria
+        public virtual string DataInclusao
+        {
+            get
+            {
+                return DataInclusaoMap.ToString("dd/MM/yyyy");
+            }
+            set
+            {
+                DataInclusaoMap = DateTime.Parse(value);
+            }
+        }
+        public virtual DateTime DataInclusaoMap { get; set; }
+        public virtual int UsuarioInclusaoId { get; set; }
+        public virtual Funcionario UsuarioInclusao
+        {
+            get
+            {
+                return new Funcionario().SelecionarPorId(UsuarioInclusaoId);
+            }
+            set
+            {
+                UsuarioInclusaoId = value.Id;
+            }
+        }
+        public virtual string DataAlteracao
+        {
+            get
+            {
+                return DataAlteracaoMap.ToString("dd/MM/yyyy");
+            }
+            set
+            {
+                DataAlteracaoMap = DateTime.Parse(value);
+            }
+        }
+        public virtual DateTime DataAlteracaoMap { get; set; }
+        public virtual int UsuarioAlteracaoId { get; set; }
+        public virtual Funcionario UsuarioAlteracao
+        {
+            get
+            {
+                return new Funcionario().SelecionarPorId(UsuarioAlteracaoId);
+            }
+            set
+            {
+                UsuarioAlteracaoId = value.Id;
+            }
+        }
+        public virtual string DataBaixa
+        {
+            get
+            {
+                return DataBaixaMap.ToString("dd/MM/yyyy");
+            }
+            set
+            {
+                DataBaixaMap = DateTime.Parse(value);
+            }
+        }
+        public virtual DateTime DataBaixaMap { get; set; }
+        public virtual int UsuarioBaixaId { get; set; }
+        public virtual Funcionario UsuarioBaixa
+        {
+            get
+            {
+                return new Funcionario().SelecionarPorId(UsuarioBaixaId);
+            }
+            set
+            {
+                UsuarioBaixaId = value.Id;
             }
         }
         #endregion

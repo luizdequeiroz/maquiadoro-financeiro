@@ -151,6 +151,7 @@
     <Compile Include="Models\Dao\ExtensionDao.cs" />
     <Compile Include="Models\Dao\FuncionarioDao.cs" />
     <Compile Include="Models\Entidades\Autorizacao.cs" />
+    <Compile Include="Models\Entidades\ContaAPagar.cs" />
     <Compile Include="Models\Entidades\ContaBancaria.cs" />
     <Compile Include="Models\Entidades\Fornecedor.cs" />
     <Compile Include="Models\Entidades\Funcionario.cs" />
@@ -160,7 +161,9 @@
     <Compile Include="Models\Entidades\TipoDespesa.cs" />
     <Compile Include="Models\Enums\EFormaEntrega.cs" />
     <Compile Include="Models\Enums\ECategoria.cs" />
+    <Compile Include="Models\Enums\ESimOuNao.cs" />
     <Compile Include="Models\Maps\AutorizacaoMap.cs" />
+    <Compile Include="Models\Maps\ContaAPagarMap.cs" />
     <Compile Include="Models\Maps\ContaBancariaMap.cs" />
     <Compile Include="Models\Maps\FornecedorMap.cs" />
     <Compile Include="Models\Maps\TerceiroMap.cs" />

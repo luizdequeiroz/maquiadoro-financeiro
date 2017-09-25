@@ -20,7 +20,7 @@ namespace Financeiro.Models.Maps
             Map(t => t.Vencimento);
             Map(t => t.ValorMensal);
             Map(t => t.TempoContrato);
-            Map(t => t.DataCadastro);
+            Map(t => t.DataCadastroMap, "DataCadastro");
             Table("Terceiro");
         }
     }

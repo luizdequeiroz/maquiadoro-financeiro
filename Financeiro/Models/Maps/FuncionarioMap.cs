@@ -13,7 +13,7 @@ namespace Financeiro.Models.Maps
         {
             Id(f => f.Id);
             Map(f => f.NomeCompleto);
-            Map(f => f.DataNascimento);
+            Map(f => f.DataNascimentoMap, "DataNascimento");
             Map(f => f.Email);
             Map(f => f.Fone1);
             Map(f => f.Fone2);
@@ -21,8 +21,8 @@ namespace Financeiro.Models.Maps
             Map(f => f.Usuario);
             Map(f => f.Senha);
             Map(f => f.SetorId);
-            Map(f => f.DataCadastro);
-            Map(f => f.DataAdmissao);
+            Map(f => f.DataCadastroMap, "DataCadastro");
+            Map(f => f.DataAdmissaoMap, "DataAdmissao");
             Map(f => f.Logradouro);
             Map(f => f.Numero);
             Map(f => f.Complemento);

@@ -74,7 +74,7 @@
                     @{ var setores = new List<Setor>().Selecionar(); }
                     @foreach (var s in setores)
                     {
-                        <option value="@s.Id" title="@s.Descricao" @(s.Id != Model.SetorId ? null : "selected")>@s.Nome</option>
+                        <option value="@s.Id" title="@s.Descricao" @(s.Id != Model.SetorId ? "" : "selected")>@s.Nome</option>
                     }
                     @{ setores = null; }
                 </select>

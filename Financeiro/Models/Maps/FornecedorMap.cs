@@ -1,4 +1,5 @@
 ﻿using Financeiro.Models.Entidades;
+using Financeiro.Models.Enums;
 using FluentNHibernate.Mapping;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Financeiro.Models.Maps
         public FornecedorMap()
         {
             Id(f => f.Id);
-            Map(f => (int)f.EhTransportador);
+            Map(f => f.EhTransportador);
             Map(f => f.NomeFantasia);
             Map(f => f.RazaoSocial);
             Map(f => f.CNPJ);
@@ -26,7 +27,7 @@ namespace Financeiro.Models.Maps
             Map(f => f.Bairro);
             Map(f => f.Municipio);
             Map(f => f.Estado);
-            Map(f => f.DataCadastro);
+            Map(f => f.DataCadastroMap, "DataCadastro");
             Table("Fornecedor");
         }
     }
