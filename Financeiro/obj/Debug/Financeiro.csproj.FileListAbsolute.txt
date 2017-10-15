@@ -65,4 +65,3 @@ C:\Users\luizd\Documents\Visual Studio 2017\Projects\Financeiro\Financeiro\bin\W
 C:\Users\luizd\Documents\Visual Studio 2017\Projects\Financeiro\Financeiro\bin\Antlr3.Runtime.pdb
 C:\Users\luizd\Documents\Visual Studio 2017\Projects\Financeiro\Financeiro\bin\Newtonsoft.Json.xml
 C:\Users\luizd\Documents\Visual Studio 2017\Projects\Financeiro\Financeiro\bin\System.Web.Optimization.xml
-C:\Users\luizd\Dropbox\MaquiADORO\Financeiro\Financeiro\bin\System.Web.Mvc.dll

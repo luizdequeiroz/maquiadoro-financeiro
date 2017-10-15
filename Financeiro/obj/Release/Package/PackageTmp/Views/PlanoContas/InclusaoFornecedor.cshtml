@@ -14,7 +14,7 @@
         @Html.ValidationSummary(true)
         <div class="col-md-2 col-sm-2">
             <div class="form-group">
-                <label for="EhAVista" class="control-label">É a Vista?</label><br />
+                <label for="EhAVista" class="control-label"><i class="fa fa-credit-card"></i> A Vista</label><br />
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
                         @Html.RadioButtonFor(f => f.EhAVista, 1) Sim
@@ -113,7 +113,7 @@
         </div>
         <hr class="col-md-12 col-sm-12" />
         <div class="col-md-12 col-sm-12 form-group text-center">
-            <input type="submit" class="btn btn-primary" value="Incluir" />
+            <button type="submit" class="btn btn-default"><i class="fa fa-check"></i> Incluir</button>
         </div>
                         }
 </fieldset>

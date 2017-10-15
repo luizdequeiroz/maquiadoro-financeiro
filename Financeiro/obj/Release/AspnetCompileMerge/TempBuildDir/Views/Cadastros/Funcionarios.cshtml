@@ -15,7 +15,7 @@
                 <tbody>
                     <tr>
                         <td colspan="5" align="right">
-                            <a href="~/Cadastros/NovoFuncionario" target="principal" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> NOVO FUNCIONÁRIO</a>
+                            <a href="~/Cadastros/NovoFuncionario" target="principal" class="btn btn-default btn-sm"><i class="fa fa-plus-circle"></i> NOVO FUNCIONÁRIO</a>
                         </td>
                     </tr>
                 </tbody>
@@ -48,13 +48,13 @@
 
                             <td align="right">
                                 <div class="btn-group">
-                                    <a href="~/Cadastros/VerFuncionario/@f.Id" target="principal" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> Ver</a>
+                                    <a href="~/Cadastros/VerFuncionario/@f.Id" target="principal" class="btn btn-default btn-xs"><i class="fa fa-eye"></i> Ver</a>
                                     @if (Authorizations.Is("Administrativo"))
                                     {
                                         <a href="~/Cadastros/AlterarFuncionario/@f.Id" target="principal" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Alterar</a>
                                         if (f.Id != ((Funcionario)Session["Funcionario"]).Id)
                                         {
-                                            <a class="btn btn-danger btn-xs" data-toggle="modal" data-backdrop="false" data-target="#excluir_@f.Id"><i class="fa fa-minus-circle"></i> Excluir</a>
+                                            <a class="btn btn-default btn-xs" data-toggle="modal" data-backdrop="false" data-target="#excluir_@f.Id"><i class="fa fa-minus-circle"></i> Excluir</a>
                                             <div class="modal fade" id="excluir_@f.Id" role="dialog" data-class="modal-draggable">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
@@ -66,8 +66,8 @@
                                                             <label class="control-label">Tem certeza de que deseja excluir o funcionário?!</label>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <input type="reset" class="btn btn-danger" value="Não" data-dismiss="modal" />
-                                                            <a class="btn btn-success" href="~/Cadastros/ExcluirFuncionario/@f.Id">Sim</a>
+                                                            <input type="reset" class="btn btn-default" value="Não" data-dismiss="modal" />
+                                                            <a class="btn btn-default" href="~/Cadastros/ExcluirFuncionario/@f.Id">Sim</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -95,7 +95,7 @@
                 <tbody>
                     <tr>
                         <td colspan="5" align="right">
-                            <a href="~/Cadastros/NovoFuncionario" target="principal" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> NOVO FUNCIONÁRIO</a>
+                            <a href="~/Cadastros/NovoFuncionario" target="principal" class="btn btn-default btn-sm"><i class="fa fa-plus-circle"></i> NOVO FUNCIONÁRIO</a>
                         </td>
                     </tr>
                 </tbody>
