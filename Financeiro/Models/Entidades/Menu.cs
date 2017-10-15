@@ -8,7 +8,7 @@ namespace Financeiro.Models.Entidades
 {
     public class Menu
     {
-        public virtual int Id { get; set; }
+        public virtual long Id { get; set; }
         public virtual string Class { get; set; }
         public virtual string Href { get; set; }
         public virtual string Controller { get; set; }
@@ -20,7 +20,7 @@ namespace Financeiro.Models.Entidades
         {
             get
             {
-                return new List<Autorizacao>().Selecionar().Where(a => a.MenuId == Id).ToList();
+                return new List<Autorizacao>().SelecionarOnde(a => a.MenuId == Id).ToList();
             }
         }
     }

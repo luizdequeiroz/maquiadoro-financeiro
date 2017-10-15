@@ -10,7 +10,7 @@ namespace Financeiro.Models.Entidades
 {
     public class Funcionario
     {
-        public virtual int Id { get; set; }
+        public virtual long Id { get; set; }
 
         [Required(ErrorMessage = "Informe o nome!")]
         public virtual string NomeCompleto { get; set; }
@@ -44,7 +44,7 @@ namespace Financeiro.Models.Entidades
         public virtual string RepSenha { get; set; }
 
         [Required(ErrorMessage = "Informe o setor!")]
-        public virtual int SetorId { get; set; }
+        public virtual long SetorId { get; set; }
 
         public virtual string DataCadastro
         {
@@ -93,7 +93,8 @@ namespace Financeiro.Models.Entidades
         {
             get
             {
-                return new List<ContaBancaria>().SelecionarPorFavorecidoId(Id, ECategoria.Funcionario);
+                //return new List<ContaBancaria>().SelecionarPorFavorecidoId(Id, ECategoria.Funcionario);
+                return new List<ContaBancaria>().SelecionarOnde(cb => cb.CategoriaFavorecido == (int)ECategoria.Funcionario && cb.FavorecidoId == Id);
             }
         }
     }

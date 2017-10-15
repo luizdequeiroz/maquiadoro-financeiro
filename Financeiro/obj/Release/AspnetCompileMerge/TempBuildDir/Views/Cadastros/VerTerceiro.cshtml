@@ -8,63 +8,63 @@
 
 <fieldset>
     <legend>Ficha do Terceiro - @Model.Nome</legend>
-    <div class="col-md-8">
-        <div class="col-md-7">
+    <div class="col-md-8 col-sm-8">
+        <div class="col-md-7 col-sm-7">
             <div class="form-group">
                 <label for="NomeCompleto" class="control-label">Nome Completo: </label>
                 @Model.Nome
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-4">
             <div class="form-group">
                 <label for="Email" class="control-label">E-mail: </label>
                 @Model.Email
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-4">
             <div class="form-group">
                 <label for="Fone1" class="control-label">Fone 1: </label>
                 @Model.Fone1
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-4">
             <div class="form-group">
                 <label for="Fone2" class="control-label">Fone 2: </label>
                 @(string.IsNullOrEmpty(Model.Fone2) ? "[Não informado]" : Model.Fone2)
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 col-sm-8">
             <div class="form-group">
                 <label for="Descricao" class="control-label">Descrição: </label>
                 @(string.IsNullOrEmpty(Model.Descricao) ? "[Não informado]" : Model.Descricao)
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-4">
             <div class="form-group" title="@Model.DataCadastro">
                 <label for="DataCadastro" class="control-label">Data de Cadastro: </label>
                 @(string.IsNullOrEmpty(Model.DataCadastro) ? "[Não informado]" : Model.DataCadastro.Substring(0, 10))
             </div>
         </div>
-        <hr class="col-md-12" />
-        <div class="col-md-4">
+        <hr class="col-md-12 col-sm-12" />
+        <div class="col-md-4 col-sm-4">
             <div class="form-group">
                 <label for="Vencimento" class="control-label">Vencimento: </label>
                 @(string.IsNullOrEmpty(Model.Vencimento) ? "[Não informado]" : Model.Vencimento)
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="ValorMensal" class="control-label">Valor Mensal: </label>
                 @(string.IsNullOrEmpty(Model.ValorMensal) ? "[Não informado]" : Model.ValorMensal.Substring(0, 7))
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-4">
             <div class="form-group">
                 <label for="TempoContrato" class="control-label">Tempo de Contrato: </label>
                 @(string.IsNullOrEmpty(Model.TempoContrato) ? "[Não informado]" : Model.TempoContrato)
             </div>
         </div>
-        <div class="col-md-12 text-center">
+        <div class="col-md-12 col-sm-12 text-center">
             @if (Authorizations.Is("Administrativo"))
             {
                 <a href="~/Cadastros/AlterarTerceiro/@Model.Id" class="btn btn-default">Alterar</a>
@@ -89,7 +89,7 @@
             }
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-4">
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead class="table-bordered">

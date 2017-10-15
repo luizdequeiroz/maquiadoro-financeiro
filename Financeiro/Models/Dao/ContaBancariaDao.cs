@@ -10,7 +10,7 @@ namespace Financeiro.Models.Dao
 {
     public static partial class CrudDao
     {
-        public static List<ContaBancaria> SelecionarPorFavorecidoId(this List<ContaBancaria> contasBancarias, int favorecidoId, ECategoria categoria)
+        public static List<ContaBancaria> SelecionarPorFavorecidoId(this List<ContaBancaria> contasBancarias, long favorecidoId, ECategoria categoria)
         {
             SessionFactory.CriarSession();
             using (var session = SessionFactory.AbrirSession())

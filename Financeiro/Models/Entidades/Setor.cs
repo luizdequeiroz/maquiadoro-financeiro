@@ -8,7 +8,7 @@ namespace Financeiro.Models.Entidades
 {
     public class Setor
     {
-        public virtual int Id { get; set; }
+        public virtual long Id { get; set; }
         public virtual string Nome { get; set; }
         public virtual string Descricao { get; set; }
 
@@ -16,14 +16,14 @@ namespace Financeiro.Models.Entidades
         {
             get
             {
-                return new List<Funcionario>().Selecionar().Where(f => f.SetorId == Id).ToList();
+                return new List<Funcionario>().SelecionarOnde(f => f.SetorId == Id).ToList();
             }
         }
         public virtual List<Autorizacao> Autorizacoes
         {
             get
             {
-                return new List<Autorizacao>().Selecionar().Where(a => a.SetorId == Id).ToList();
+                return new List<Autorizacao>().SelecionarOnde(a => a.SetorId == Id).ToList();
             }
         }
     }

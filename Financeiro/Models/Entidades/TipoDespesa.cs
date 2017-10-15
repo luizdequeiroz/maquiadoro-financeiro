@@ -7,7 +7,7 @@ namespace Financeiro.Models.Entidades
 {
     public class TipoDespesa
     {
-        public virtual int Id { get; set; }
+        public virtual long Id { get; set; }
         public virtual string Nome { get; set; }
         public virtual string Descricao { get; set; }
         public virtual int Categoria { get; set; }

@@ -3,6 +3,7 @@ using NHibernate.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Financeiro.Models.Dao
 {
@@ -30,7 +31,7 @@ namespace Financeiro.Models.Dao
                 }
             }
         }
-        public static T SelecionarPorId<T>(this T t, int id)
+        public static T SelecionarPorId<T>(this T t, long id)
         {
             using (var session = SessionFactory.AbrirSession())
             {
@@ -43,6 +44,22 @@ namespace Financeiro.Models.Dao
             using (var session = SessionFactory.AbrirSession())
             {
                 ts = (from t in session.Query<T>() select t).ToList();
+                return ts;
+            }
+        }
+        public static T SelecionarUmOnde<T>(this T t, Expression<Func<T, bool>> expression)
+        {
+            using(var session = SessionFactory.AbrirSession())
+            {
+                t = session.Query<T>().Where(expression).SingleOrDefault();
+                return t;
+            }
+        }
+        public static List<T> SelecionarOnde<T>(this List<T> ts, Expression<Func<T, bool>> expression)
+        {
+            using (var session = SessionFactory.AbrirSession())
+            {
+                ts = session.Query<T>().Where(expression).ToList();
                 return ts;
             }
         }

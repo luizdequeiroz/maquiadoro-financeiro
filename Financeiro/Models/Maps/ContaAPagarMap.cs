@@ -8,14 +8,15 @@ using FluentNHibernate.MappingModel;
 using Financeiro.Models.Enums;
 
 namespace Financeiro.Models.Maps
-{
+{   
     public class ContaAPagarMap : ClassMap<ContaAPagar>
     {
         public ContaAPagarMap()
         {
             Id(c => c.Id);
 
-            Map(c => c.Vencimento);
+            Map(c => c.Situacao);
+            Map(c => c.VencimentoMap, "Vencimento");
             Map(c => c.ValorPrevisto);
             Map(c => c.Descricao);
             Map(c => c.TipoDespesaId);

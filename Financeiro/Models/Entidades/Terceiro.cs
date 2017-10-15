@@ -10,7 +10,7 @@ namespace Financeiro.Models.Entidades
 {
     public class Terceiro
     {
-        public virtual int Id { get; set; }
+        public virtual long Id { get; set; }
         [Required(ErrorMessage = "Informe o nome!")]
         public virtual string Nome { get; set; }
         [Required(ErrorMessage = "Informe o e-mail!")]
@@ -39,7 +39,8 @@ namespace Financeiro.Models.Entidades
         {
             get
             {
-                return new List<ContaBancaria>().SelecionarPorFavorecidoId(Id, ECategoria.Terceiro);
+                //return new List<ContaBancaria>().SelecionarPorFavorecidoId(Id, ECategoria.Terceiro);
+                return new List<ContaBancaria>().SelecionarOnde(cb => cb.CategoriaFavorecido == (int)ECategoria.Terceiro && cb.FavorecidoId == Id);
             }
         }
     }

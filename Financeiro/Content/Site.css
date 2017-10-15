@@ -64,7 +64,6 @@ textarea {
 .submenu {
     left: 11%;
     width: 90%;
-    
     border-bottom: -1px !important;
     border-bottom-color: transparent !important;
 }
@@ -137,6 +136,7 @@ textarea {
     position: absolute;
     width: 16.66666666666667%;
     background-color: whitesmoke;
+    border-right: 1px solid lightgray;
 }
 
 #body {
@@ -152,7 +152,25 @@ textarea {
 }
 
 #formulario {
-
     min-height: 350px;
 }
 
+.btn-group-box {
+    margin-top: 5px !important;
+}
+
+.btn-box {
+    font-size: 24px !important;
+    padding-bottom: 100px !important;
+    padding-top: 100px !important;
+}
+
+/*#conteudo-do-menu {
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}*/
+
+#subfundo-fixo {
+    border-bottom: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}

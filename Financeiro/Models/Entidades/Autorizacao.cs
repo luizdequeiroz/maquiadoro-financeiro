@@ -8,10 +8,10 @@ namespace Financeiro.Models.Entidades
 {
     public class Autorizacao
     {
-        public virtual int Id { get; set; }
+        public virtual long Id { get; set; }
 
-        public virtual int MenuId { get; set; }
-        public virtual int SetorId { get; set; }
+        public virtual long MenuId { get; set; }
+        public virtual long SetorId { get; set; }
 
         public virtual Menu Menu
         {

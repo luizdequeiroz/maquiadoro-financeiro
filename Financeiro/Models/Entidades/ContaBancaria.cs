@@ -10,7 +10,7 @@ namespace Financeiro.Models.Entidades
 {
     public class ContaBancaria
     {
-        public virtual int Id { get; set; }
+        public virtual long Id { get; set; }
         public virtual string NomeTitular { get; set; }
 
         [Required(ErrorMessage = "Informe o nome do banco!")]
@@ -22,7 +22,7 @@ namespace Financeiro.Models.Entidades
 
         public virtual string Op { get; set; }
         public virtual int CategoriaFavorecido { get; set; }
-        public virtual int FavorecidoId { get; set; }
+        public virtual long FavorecidoId { get; set; }
 
         public virtual Fornecedor Fornecedor
         {

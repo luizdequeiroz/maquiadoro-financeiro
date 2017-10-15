@@ -14,7 +14,7 @@
                 <tbody>
                     <tr>
                         <td colspan="5" align="right">
-                            <a href="~/Cadastros/NovoTerceiro" target="principal" class="btn btn-primary btn-sm">NOVO TERCEIRO</a>
+                            <a href="~/Cadastros/NovoTerceiro" target="principal" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> NOVO TERCEIRO</a>
                         </td>
                     </tr>
                 </tbody>
@@ -45,11 +45,11 @@
 
                             <td align="right">
                                 <div class="btn-group">
-                                    <a href="~/Cadastros/VerTerceiro/@t.Id" target="principal" class="btn btn-success btn-xs">Ver</a>
+                                    <a href="~/Cadastros/VerTerceiro/@t.Id" target="principal" class="btn btn-success btn-xs"><i class="fa fa-eye"></i> Ver</a>
                                     @if (Authorizations.Is("Administrativo", "Financeiro"))
                                     {
-                                        <a href="~/Cadastros/AlterarTerceiro/@t.Id" target="principal" class="btn btn-default btn-xs">Alterar</a>
-                                        <a class="btn btn-danger btn-xs" data-toggle="modal" data-backdrop="false" data-target="#excluir_@t.Id">Excluir</a>
+                                        <a href="~/Cadastros/AlterarTerceiro/@t.Id" target="principal" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Alterar</a>
+                                        <a class="btn btn-danger btn-xs" data-toggle="modal" data-backdrop="false" data-target="#excluir_@t.Id"><i class="fa fa-minus-circle"></i> Excluir</a>
                                         <div class="modal fade" id="excluir_@t.Id" role="dialog" data-class="modal-draggable">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
@@ -93,7 +93,7 @@
                 <tbody>
                     <tr>
                         <td colspan="5" align="right">
-                            <a href="~/Cadastros/NovoTerceiro" target="principal" class="btn btn-primary btn-sm">NOVO TERCEIRO</a>
+                            <a href="~/Cadastros/NovoTerceiro" target="principal" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> NOVO TERCEIRO</a>
                         </td>
                     </tr>
                 </tbody>

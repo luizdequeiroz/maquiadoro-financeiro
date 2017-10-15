@@ -1,0 +1,120 @@
+﻿@model Financeiro.Models.Entidades.ContaAPagar
+@using Financeiro.Models.Entidades
+@using Financeiro.Models.Dao
+@using Financeiro.Models.Enums
+@{
+    ViewBag.Title = "Inclusão de Conta para Terceiro";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+
+<fieldset>
+    <legend>Nova Conta para Terceiro</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+                <label for="Situacao" class="control-label"><i class="fa fa-dot-circle-o"></i> Situação</label><br />
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-default">
+                        @Html.RadioButtonFor(f => f.Situacao, 1, new { @class = "Situacao" }) Pago
+                    </label>
+                    <label class="btn btn-default active">
+                        @Html.RadioButtonFor(f => f.Situacao, 0, new { @class = "Situacao", @checked = "checked" }) A Pagar
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-2" id="form-baixa" style="display: none">
+            <div class="form-group">
+                <label for="DataBaixa" class="control-label"><i class="fa fa-calendar"></i> Data da Baixa</label>
+                @Html.TextBoxFor(t => t.DataBaixa, new { type = "date", @class = "form-control", @disabled = "disabled" })
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label for="TipoDespesaId" class="control-label"><i class="fa fa-ticket"></i> Tipo de Despesa</label>
+                <select name="TipoDespesaId" id="TipoDespesaId" class="form-control" data-val="true" data-val-required="Informe o Tipo de Despesa!">
+                    <option value="">Selecione</option>
+                    @{ var tipoDespesas = new List<TipoDespesa>().SelecionarOnde(x => x.Categoria == (int)ECategoria.Terceiro); }
+                    @foreach (var t in tipoDespesas)
+                    {
+                        <option value="@t.Id" title="@t.Descricao">@t.Nome</option>
+                    }
+                    @{ tipoDespesas = null; }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+                <label for="FavorecidoId" class="control-label"><i class="fa fa-users"></i> Favorecido</label>
+                <select name="FavorecidoId" id="FavorecidoId" class="form-control" data-val="true" data-val-required="Informe o Favorecido da Conta!">
+                    <option value="">Selecione</option>
+                    @{ var terceiros = new List<Terceiro>().Selecionar(); }
+                    @foreach (var t in terceiros)
+                    {
+                        <option value="@t.Id" title="@t.Descricao">@t.Nome</option>
+                    }
+                    @{ terceiros = null; }
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+                <label for="Data" class="control-label"><i class="fa fa-calendar"></i> Data</label>
+                @Html.TextBoxFor(t => t.Vencimento, new { type = "date", @class = "form-control" })
+            </div>
+        </div>        
+        <div class="col-md-2 col-sm-2">
+            <div class="form-group">
+                <label for="strValorPrevisto" class="control-label"><i class="fa fa-money"></i> Valor Previsto</label>
+                @Html.TextBoxFor(t => t.strValorPrevisto, new { placeholder = "0,00", @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+                <label for="Descricao" class="control-label"><i class="fa fa-commenting"></i> Descrição</label>
+                @Html.TextAreaFor(t => t.Descricao, new { @class = "form-control" })
+            </div>
+        </div>
+        <hr class="col-md-12 col-sm-12" />
+        <div class="col-md-12 col-sm-12 form-group text-center">
+            <input type="submit" class="btn btn-primary" value="Incluir" />
+        </div>
+    }
+</fieldset>
+<script>
+    $(document).ready(function () {
+        //$("#Vencimento").mask("99/99/9999");
+        var date = new Date();
+        var mm = (date.getMonth() + 1).toString();
+        mm = mm[1] ? mm : "0" + mm[0];
+        $("#Vencimento").val(date.getFullYear() + "-" + mm + "-" + date.getDate());
+
+        $(".Situacao").change(function () {
+            var op = $(this).val();
+            if (op == 1) {
+                $("#form-baixa").css("display", "block");
+                $("#DataBaixa").removeAttr("disabled");
+            } else {
+                $("#form-baixa").css("display", "none");
+                $("#DataBaixa").attr("disabled", "disabled");
+            }
+        });
+
+        //$("#DataBaixa").mask("99/99/9999");
+        var date = new Date();
+        var mm = (date.getMonth() + 1).toString();
+        mm = mm[1] ? mm : "0" + mm[0];
+        $("#DataBaixa").val(date.getFullYear() + "-" + mm + "-" + date.getDate());
+
+        $("#strValorPrevisto").keyup(function () {
+            var er = /[^0-9.,]/;
+            er.lastIndex = 0;
+            var campo = this;
+            if (er.test(campo.value)) {
+                campo.value = "";
+            }
+        });
+    });
+</script>

@@ -10,56 +10,56 @@
     @using (Html.BeginForm())
     {
         @Html.ValidationSummary(true)
-        <div class="col-md-12">
+        <div class="col-md-12 col-sm-12">
             <div class="form-group">
                 <label for="EhTransportador" class="control-label">É Transportador?</label>
                 @Html.RadioButtonFor(f => f.EhTransportador, 1) Sim
                 @Html.RadioButtonFor(f => f.EhTransportador, 0) Não
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="RazaoSocial" class="control-label">Razão Social</label>
                 @Html.TextBoxFor(f => f.RazaoSocial, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-4">
             <div class="form-group">
                 <label for="NomeFantasia" class="control-label">Nome Fantasia <span class="text-danger">*</span></label> @Html.ValidationMessageFor(f => f.NomeFantasia)
                 @Html.TextBoxFor(f => f.NomeFantasia, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="CNPJ" class="control-label">CNPJ</label>
                 @Html.TextBoxFor(f => f.CNPJ, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="Email" class="control-label">E-mail</label>
                 @Html.TextBoxFor(f => f.Email, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-2">
             <div class="form-group">
                 <label for="Fone1" class="control-label">Fone 1</label>
                 @Html.TextBoxFor(f => f.Fone1, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-2">
             <div class="form-group">
                 <label for="Fone2" class="control-label">Fone 2</label>
                 @Html.TextBoxFor(f => f.Fone2, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 col-sm-5">
             <div class="form-group">
                 <label for="Descricao" class="control-label">Descrição</label>
                 @Html.TextAreaFor(f => f.Descricao, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-sm-2">
             @if (Authorizations.Is("Administrativo"))
             {
                 <div class="form-group">
@@ -68,45 +68,45 @@
                 </div>
             }
         </div>
-        <hr class="col-md-12" />
-        <div class="col-md-3">
+        <hr class="col-md-12 col-sm-12" />
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="Logradouro" class="control-label">Logradouro</label>
                 @Html.TextBoxFor(f => f.Logradouro, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-1 col-sm-1">
             <div class="form-group">
                 <label for="Numero" class="control-label">Nº</label>
                 @Html.TextBoxFor(f => f.Numero, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="Complemento" class="control-label">Complemento</label>
                 @Html.TextBoxFor(f => f.Complemento, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="Bairro" class="control-label">Bairro</label>
                 @Html.TextBoxFor(f => f.Bairro, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="Municipio" class="control-label">Município</label>
                 @Html.TextBoxFor(f => f.Municipio, new { @class = "form-control" })
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="Estado" class="control-label">Estado (ou UF)</label>
                 @Html.TextBoxFor(f => f.Estado, new { @class = "form-control" })
             </div>
         </div>
-        <hr class="col-md-12" />
-        <div class="col-md-12 form-group text-center">
+        <hr class="col-md-12 col-sm-12" />
+        <div class="col-md-12 col-sm-12 form-group text-center">
             <input type="submit" class="btn btn-primary" value="Alterar" />
         </div>
     }
@@ -114,8 +114,30 @@
 <script>
     $(document).ready(function () {
         $("#CNPJ").mask("99.999.999/9999-99");
-        $("#Fone1").mask("(99) 99999-9999");
-        $("#Fone2").mask("(99) 99999-9999");
+        $("#Fone1").mask("(99) 9999-9999?9").ready(function(event) {
+            var target, phone, element;
+            target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+            phone = target.value.replace('/\D/g', '');
+            element = $(target);
+            element.unmask();
+            if(phone.length > 10) {
+                element.mask("(99) 99999-9999");
+            } else {
+                element.mask("(99) 9999-9999?9");  
+            }
+        });
+        $("#Fone2").mask("(99) 9999-9999?9").ready(function(event) {
+            var target, phone, element;
+            target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+            phone = target.value.replace('/\D/g', '');
+            element = $(target);
+            element.unmask();
+            if(phone.length > 10) {
+                element.mask("(99) 99999-9999");
+            } else {
+                element.mask("(99) 9999-9999?9");  
+            }
+        });
     });
 </script>
 @if (Authorizations.Is("Administrativo"))

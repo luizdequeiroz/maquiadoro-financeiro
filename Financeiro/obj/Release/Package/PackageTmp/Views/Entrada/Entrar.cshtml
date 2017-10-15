@@ -11,7 +11,7 @@
         {
             @Html.ValidationSummary(true)
             <div class="form-group">
-                <label for="EmailEntrada" class="control-label">E-Mail</label>
+                <label for="Usuario" class="control-label">Usuário</label>
                 @Html.ValidationMessageFor(f => f.Usuario)
                 @Html.TextBoxFor(u => u.Usuario, new { @class = "form-control" })
             </div>

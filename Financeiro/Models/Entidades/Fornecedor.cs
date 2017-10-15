@@ -10,7 +10,7 @@ namespace Financeiro.Models.Entidades
 {
     public class Fornecedor
     {
-        public virtual int Id { get; set; }
+        public virtual long Id { get; set; }
         public virtual int EhTransportador { get; set; }
 
         [Required(ErrorMessage = "Informe o nome fantasia!")]
@@ -44,7 +44,8 @@ namespace Financeiro.Models.Entidades
         {
             get
             {
-                return new List<ContaBancaria>().SelecionarPorFavorecidoId(Id, ECategoria.Fornecedor);
+                //return new List<ContaBancaria>().SelecionarPorFavorecidoId(Id, ECategoria.Fornecedor);
+                return new List<ContaBancaria>().SelecionarOnde(cb => cb.CategoriaFavorecido == (int)ECategoria.Fornecedor && cb.FavorecidoId == Id);
             }
         }
     }

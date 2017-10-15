@@ -1,7 +1,14 @@
-﻿@{
-    ViewBag.Title = "PlanoContas";
+﻿@using Financeiro.Controllers.Auth
+@{
+    ViewBag.Title = "Plano de Contas";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
 }
 
-<div style="text-align: center">
-    <h2>Sem prazo definido!</h2>
+<div class="btn-group btn-group-justified btn-group-lg btn-group-box">
+    <a class="btn btn-default btn-lg btn-box" href="~/PlanoContas/Inclusao"><i class="fa fa-plus fa-3x" aria-hidden="true"></i> Inclusão</a>
+    @if (Authorizations.Is("Administrativo", "Financeiro"))
+    {
+        <a class="btn btn-default btn-lg btn-box" href="~/PlanoContas/Ateracao"><i class="fa fa-pencil-square-o fa-3x" aria-hidden="true"></i> Baixa/Alteração</a>
+    }
+    <a class="btn btn-default btn-lg btn-box" href="~/PlanoContas/Consulta"><i class="fa fa-search fa-3x" aria-hidden="true"></i> Consulta</a>
 </div>
