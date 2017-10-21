@@ -21,7 +21,7 @@
         <div class="col-md-2 col-sm-2">
             <div class="form-group">
                 <label for="DataNascimento" class="control-label"><i class="fa fa-calendar"></i> Nascimento <span class="text-danger">*</span></label>
-                @Html.TextBoxFor(f => f.DataNascimento, new { @class = "form-control" })
+                @Html.TextBoxFor(f => f.DataNascimento, new { type = "date", @class = "form-control" })
             </div>
         </div>
         <div class="col-md-3 col-sm-3">
@@ -85,13 +85,13 @@
                             <div class="col-md-2 col-sm-2">
                                 <div class="form-group">
                                     <label for="DataCadastro" class="control-label"><i class="fa fa-calendar"></i> Data de Cadastro</label>
-                                    @Html.TextBoxFor(f => f.DataCadastro, new { @class = "form-control" })
+                                    @Html.TextBoxFor(f => f.DataCadastro, new { type = "date", @class = "form-control" })
                                 </div>
                             </div>
                             <div class="col-md-2 col-sm-2">
                                 <div class="form-group">
                                     <label for="DataAdmissao" class="control-label"><i class="fa fa-calendar"></i> Data de Admissaão</label>
-                                    @Html.TextBoxFor(f => f.DataAdmissao, new { @class = "form-control" })
+                                    @Html.TextBoxFor(f => f.DataAdmissao, new { type = "date", @class = "form-control" })
                                 </div>
                             </div>
                         }
@@ -140,7 +140,7 @@
 </fieldset>
 <script>
     $(document).ready(function () {
-        $("#DataNascimento").mask("99/99/9999");
+        //$("#DataNascimento").mask("99/99/9999");
         $("#Fone1").mask("(99) 9999-9999?9").ready(function(event) {
             var target, phone, element;
             target = (event.currentTarget) ? event.currentTarget : event.srcElement;
@@ -171,12 +171,12 @@
 {
     <script>
         $(document).ready(function () {
-            $("#DataCadastro").mask("99/99/9999");
-            $("#DataAdmissao").mask("99/99/9999");
+            //$("#DataCadastro").mask("99/99/9999");
+            //$("#DataAdmissao").mask("99/99/9999");
             var date = new Date();
             var mm = (date.getMonth() + 1).toString();
             mm = mm[1] ? mm : "0" + mm[0];
-            $("#DataCadastro").val(date.getDate() + "/" + mm + "/" + date.getFullYear());
+            $("#DataCadastro").val(date.getFullYear() + "-" + mm + "-" + date.getDate());
         });
     </script>
 }

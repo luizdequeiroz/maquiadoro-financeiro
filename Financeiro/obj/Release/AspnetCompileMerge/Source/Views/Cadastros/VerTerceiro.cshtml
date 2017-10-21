@@ -49,13 +49,13 @@
         <div class="col-md-4 col-sm-4">
             <div class="form-group">
                 <label for="Vencimento" class="control-label">Vencimento: </label>
-                @(string.IsNullOrEmpty(Model.Vencimento) ? "[Não informado]" : Model.Vencimento)
+                @(string.IsNullOrEmpty(Model.Vencimento) ? "[Não informado]" : Model.Vencimento.Substring(0, 10))
             </div>
         </div>
         <div class="col-md-3 col-sm-3">
             <div class="form-group">
                 <label for="ValorMensal" class="control-label">Valor Mensal: </label>
-                @(string.IsNullOrEmpty(Model.ValorMensal) ? "[Não informado]" : Model.ValorMensal.Substring(0, 7))
+                @(string.IsNullOrEmpty(Model.strValorMensal) ? "[Não informado]" : decimal.Parse(Model.strValorMensal).ToString("C") )
             </div>
         </div>
         <div class="col-md-4 col-sm-4">
@@ -68,7 +68,7 @@
             @if (Authorizations.Is("Administrativo"))
             {
                 <a href="~/Cadastros/AlterarTerceiro/@Model.Id" class="btn btn-default">Alterar</a>
-                <a class="btn btn-danger" data-toggle="modal" data-backdrop="false" data-target="#excluir_@Model.Id">Excluir</a>
+                <a class="btn btn-default" data-toggle="modal" data-backdrop="false" data-target="#excluir_@Model.Id">Excluir</a>
                 <div class="modal fade" id="excluir_@Model.Id" role="dialog" data-class="modal-draggable">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -80,8 +80,8 @@
                                 <label class="control-label">Tem certeza de que deseja excluir o terceiro?!</label>
                             </div>
                             <div class="modal-footer">
-                                <input type="reset" class="btn btn-danger" value="Não" data-dismiss="modal" />
-                                <a class="btn btn-success" href="~/Cadastros/ExcluirTerceiro/@Model.Id">Sim</a>
+                                <button type="reset" class="btn btn-default" data-dismiss="modal">Não</button>
+                                <a class="btn btn-default" href="~/Cadastros/ExcluirTerceiro/@Model.Id">Sim</a>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                         <td align="right" @((contasBancarias.Count == 0) ? "colspan=4" : "")>
                             @if (Authorizations.Is("Administrativo", "Financeiro"))
                             {
-                                <a data-toggle="modal" data-backdrop="false" data-target="#novaconta" class="btn btn-primary btn-xs">NOVA</a>
+                                <a data-toggle="modal" data-backdrop="false" data-target="#novaconta" class="btn btn-default btn-xs">NOVA</a>
                             }
                         </td>
                     </tr>
@@ -122,7 +122,7 @@
                                     @{ var excluir = ""; }
                                     @if (Authorizations.Is("Administrativo"))
                                     {
-                                        excluir = "<a class='btn btn-danger btn-xs btn-block' data-toggle='modal' data-backdrop='false' data-target='#excluir_" + cb.Id + "'>Excluir</a>";
+                                        excluir = "<a class='btn btn-default btn-xs btn-block' data-toggle='modal' data-backdrop='false' data-target='#excluir_" + cb.Id + "'>Excluir</a>";
                                         <div class="modal fade" id="excluir_@cb.Id" role="dialog" data-class="modal-draggable">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
@@ -134,14 +134,14 @@
                                                         <label class="control-label">Tem certeza de que deseja excluir a conta bancária desta pessoa?!</label>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <input type="reset" class="btn btn-danger" value="Não" data-dismiss="modal" />
-                                                        <a class="btn btn-success" href="/Cadastros/ExcluirContaBancaria/@cb.Id">Sim</a>
+                                                        <button type="reset" class="btn btn-default" data-dismiss="modal">Não</button>
+                                                        <a class="btn btn-default" href="/Cadastros/ExcluirContaBancaria/@cb.Id">Sim</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     }
-                                    <a class="btn btn-primary btn-xs" data-toggle="popover" data-placement="left" title="@cb.NomeTitular" data-content="<b>Banco:</b> @cb.NomeBanco<br/><b>Agência:</b> @cb.Agencia<br/><b>Conta:</b> @cb.Conta<br/><b>Op:</b> @cb.Op<br/>@excluir" data-html="true">Ver</a>
+                                    <a class="btn btn-default btn-xs" data-toggle="popover" data-placement="left" title="@cb.NomeTitular" data-content="<b>Banco:</b> @cb.NomeBanco<br/><b>Agência:</b> @cb.Agencia<br/><b>Conta:</b> @cb.Conta<br/><b>Op:</b> @cb.Op<br/>@excluir" data-html="true">Ver</a>
                                 </td>
                             </tr>
                                         }

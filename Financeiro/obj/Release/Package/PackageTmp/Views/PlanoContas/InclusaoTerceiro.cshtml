@@ -53,7 +53,7 @@
                     @{ var terceiros = new List<Terceiro>().Selecionar(); }
                     @foreach (var t in terceiros)
                     {
-                        <option value="@t.Id" title="@t.Descricao">@t.Nome</option>
+                        <option value="@t.Id" title="@t.Descricao" data-data="@DateTime.Parse(t.Vencimento).ToString("yyyy-MM-dd")" data-valor="@t.ValorMensal">@t.Nome</option>
                     }
                     @{ terceiros = null; }
                 </select>
@@ -61,7 +61,7 @@
         </div>
         <div class="col-md-2 col-sm-2">
             <div class="form-group">
-                <label for="Data" class="control-label"><i class="fa fa-calendar"></i> Data</label>
+                <label for="Vencimento" class="control-label"><i class="fa fa-calendar"></i> Data</label>
                 @Html.TextBoxFor(t => t.Vencimento, new { type = "date", @class = "form-control" })
             </div>
         </div>        
@@ -100,6 +100,12 @@
                 $("#form-baixa").css("display", "none");
                 $("#DataBaixa").attr("disabled", "disabled");
             }
+        });
+
+        $("#FavorecidoId").change(function () {
+            var fav = $('option:selected', this);
+            $("#Vencimento").val(fav.data("data"));
+            $("#strValorPrevisto").val(fav.data("valor"));
         });
 
         //$("#DataBaixa").mask("99/99/9999");

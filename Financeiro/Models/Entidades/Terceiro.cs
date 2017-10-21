@@ -20,7 +20,18 @@ namespace Financeiro.Models.Entidades
         public virtual string Fone2 { get; set; }
         public virtual string Descricao { get; set; }
         public virtual string Vencimento { get; set; }
-        public virtual string ValorMensal { get; set; }
+        public virtual string strValorMensal
+        {
+            get
+            {
+                return ValorMensal.ToString();
+            }
+            set
+            {
+                ValorMensal = double.Parse(value);
+            }
+        }
+        public virtual double ValorMensal { get; set; }
         public virtual string TempoContrato { get; set; }
         public virtual string DataCadastro
         {
